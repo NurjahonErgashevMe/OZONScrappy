@@ -157,55 +157,68 @@ class ProductExtractor:
             return "0%"
     
     def _extract_rating(self, card):
-        """Извлечение рейтинга"""
         try:
-            # Улучшенные селекторы для рейтинга
             selectors = [
-                '.p6b20-a5 + span',  # Рейтинг рядом с иконкой звезды
-                '[class*="rating-value"]',
-                '[class*="star-rating"] + span',
-                'span[aria-label*="рейтинг"]'
+                '.p6b20-a4 span',  # Общий селектор
+                '.p6b20-a4 span:last-child',  # Конкретно значение рейтинга
+                '.tsBodyMBold span',  # Альтернативный вариант
+                '[class*="rating"] span'
             ]
             
             for selector in selectors:
                 try:
-                    element = card.find_element(By.CSS_SELECTOR, selector)
-                    text = element.text.strip()
-                    if re.match(r'^\d+(\.\d+)?$', text) and float(text) <= 5:
-                        return text
+                    elements = card.find_elements(By.CSS_SELECTOR, selector)
+                    for element in elements:
+                        text = element.text.strip()
+                        if re.match(r'^\d+(\.\d+)?$', text) and float(text) <= 5:
+                            return text
                 except:
                     continue
             
             return "Нет рейтинга"
-            
         except Exception as e:
             self.logger.debug(f"Ошибка извлечения рейтинга: {str(e)}")
             return "Нет рейтинга"
     
     def _extract_reviews_count(self, card):
-        """Извлечение количества отзывов"""
         try:
-            # Улучшенные селекторы для отзывов
-            selectors = [
-                '.p6b20-a5 ~ span',  # Элемент рядом с иконкой отзывов
-                '[class*="reviews-count"]',
-                'span:contains("отзыв")',
-                'span:contains("review")'
+            # CSS-селекторы
+            css_selectors = [
+                '.p6b20-a4 span:last-child',  # Конкретно текст с отзывами
+                '.tsBodyMBold span',  # Альтернативный вариант
+                '[class*="reviews"] span'
             ]
             
-            for selector in selectors:
+            for selector in css_selectors:
                 try:
-                    element = card.find_element(By.CSS_SELECTOR, selector)
-                    text = element.text.strip()
-                    if 'отзыв' in text.lower():
-                        match = re.search(r'(\d+)', text)
+                    elements = card.find_elements(By.CSS_SELECTOR, selector)
+                    for element in elements:
+                        text = element.text.strip()
+                        if 'отзыв' in text.lower():
+                            match = re.search(r'(\d+)', text.replace(' ', ''))
+                            if match:
+                                return match.group(1)
+                except:
+                    continue
+            
+            # XPath как fallback
+            xpath_selectors = [
+                ".//span[contains(text(), 'отзыв')]",
+                ".//span[contains(text(), 'review')]"
+            ]
+            
+            for xpath in xpath_selectors:
+                try:
+                    elements = card.find_elements(By.XPATH, xpath)
+                    for element in elements:
+                        text = element.text.strip()
+                        match = re.search(r'(\d+)', text.replace(' ', ''))
                         if match:
                             return match.group(1)
                 except:
                     continue
             
             return "0"
-            
         except Exception as e:
             self.logger.debug(f"Ошибка извлечения количества отзывов: {str(e)}")
             return "0"

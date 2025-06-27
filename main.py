@@ -23,6 +23,30 @@ if __name__ == "__main__":
         print(f"Средняя оценка: {seller_result['average_rating']}")
         print(f"Отзывов: {seller_result['reviews_count']}")
         
+        # Вывод дополнительной информации о продавце
+        if 'seller_details' in seller_result and seller_result['seller_details']:
+            print("\n=== Дополнительная информация о продавце ===")
+            details = seller_result['seller_details']
+            
+            if 'company_name' in details:
+                print(f"Название компании: {details['company_name']}")
+            
+            if 'registration_number' in details:
+                print(f"Регистрационный номер/ИНН: {details['registration_number']}")
+            
+            if 'working_hours' in details:
+                print(f"Режим работы: {details['working_hours']}")
+            
+            if 'address' in details:
+                print(f"Адрес: {details['address']}")
+            
+            if 'other_info' in details and details['other_info']:
+                print("Прочая информация:")
+                for info in details['other_info']:
+                    print(f"  - {info}")
+        else:
+            print("\n=== Дополнительная информация не получена ===")
+        
         # Парсинг товаров продавца
         print("\n=== Начинаем парсинг товаров ===")
         product_parser = OzonProductParser(headless=False)
