@@ -67,7 +67,7 @@ class OzonProductParser:
             
             # Ожидаем появления виджета товаров
             WebDriverWait(self.driver, 20).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, '[data-widget="infiniteVirtualPaginator"]'))
+                EC.presence_of_element_located((By.CSS_SELECTOR, '[id="contentScrollPaginator"]'))
             )
             
             self.logger.info("Страница продавца загружена, товары найдены")
