@@ -1,6 +1,6 @@
 import logging
 from parser.ozon_parser import OzonSellerParser
-from parser.product_parser import OzonProductParser
+from parser.seller_products_parser import OzonProductParser
 
 # Настройка логирования
 logging.basicConfig(
@@ -9,7 +9,7 @@ logging.basicConfig(
 )
 
 if __name__ == "__main__":
-    URL = "https://www.ozon.ru/seller/treidcomputers-2620543/?miniapp=seller_2620543"
+    URL = "https://www.ozon.ru/seller/trade-electronics-183434/?miniapp=seller_183434"
     
     try:
         # Парсинг информации о продавце
@@ -17,36 +17,29 @@ if __name__ == "__main__":
         seller_result = seller_parser.parse_seller(URL)
         
         print("\n=== Результаты парсинга продавца ===")
-        print(f"Premium магазин: {'Да' if seller_result['is_premium'] else 'Нет'}")
-        print(f"Заказов: {seller_result['orders_count']}")
-        print(f"Работает с Ozon: {seller_result['working_since']}")
-        print(f"Средняя оценка: {seller_result['average_rating']}")
-        print(f"Отзывов: {seller_result['reviews_count']}")
+        print(f"Premium магазин: {'Да' if seller_result.get('is_premium') else 'Нет'}")
+        print(f"Заказов: {seller_result.get('orders_count', 'N/A')}")
+        print(f"Работает с Ozon: {seller_result.get('working_since', 'N/A')}")
+        print(f"Средняя оценка: {seller_result.get('average_rating', 'N/A')}")
+        print(f"Отзывов: {seller_result.get('reviews_count', 'N/A')}")
+        
+        print(seller_result)
         
         # Вывод дополнительной информации о продавце
-        if 'seller_details' in seller_result and seller_result['seller_details']:
+        if seller_result.get('company_name') or seller_result.get('inn') or seller_result.get('working_hours'):
             print("\n=== Дополнительная информация о продавце ===")
-            details = seller_result['seller_details']
             
-            if 'company_name' in details:
-                print(f"Название компании: {details['company_name']}")
+            if seller_result.get('company_name'):
+                print(f"Название компании: {seller_result['company_name']}")
             
-            if 'registration_number' in details:
-                print(f"Регистрационный номер/ИНН: {details['registration_number']}")
+            if seller_result.get('inn'):
+                print(f"ИНН: {seller_result['inn']}")
             
-            if 'working_hours' in details:
-                print(f"Режим работы: {details['working_hours']}")
-            
-            if 'address' in details:
-                print(f"Адрес: {details['address']}")
-            
-            if 'other_info' in details and details['other_info']:
-                print("Прочая информация:")
-                for info in details['other_info']:
-                    print(f"  - {info}")
+            if seller_result.get('working_hours'):
+                print(f"Режим работы: {seller_result['working_hours']}")
         else:
             print("\n=== Дополнительная информация не получена ===")
-        
+                
         # Парсинг товаров продавца
         print("\n=== Начинаем парсинг товаров ===")
         product_parser = OzonProductParser(headless=False)
