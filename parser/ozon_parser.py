@@ -1,41 +1,80 @@
 # parser/ozon_parser.py
+from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+import selenium_stealth
 from .utils import wait_for_element
 from .product_parser import ProductParser
 from .seller_info_parser import SellerInfoParser
 from .seller_details_parser import SellerDetailsParser
 from .modal_parser import ModalParser
-from undetected_chromedriver import Chrome, ChromeOptions
 import logging
 import os
 import time
 
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
+
 logger = logging.getLogger(__name__)
 
 class OzonSellerParser:
-    def __init__(self, headless=False, driver_path=None):
-        self.options = ChromeOptions()
+    def __init__(self, headless=True, driver_path=None):
+        """Инициализация парсера с stealth режимом"""
+        self.options = Options()
         
-        # Настройки для обхода детекта
-        self.options.add_argument("--disable-blink-features=AutomationControlled")
-        self.options.add_argument("--window-size=1200,800")
-        self.options.add_argument("--log-level=3")
-        self.options.add_argument("--disable-dev-shm-usage")
+        # Базовые настройки Chrome
+        if headless:
+            self.options.add_argument("--headless")
+            
+        self.options.add_argument("--window-size=1920,1080")
+        # self.options.add_argument("--headless")
+        self.options.add_argument("--start-maximized")
         self.options.add_argument("--no-sandbox")
+        self.options.add_argument("--disable-dev-shm-usage")
+        self.options.add_argument("--disable-gpu")
+        self.options.add_argument("--disable-features=VizDisplayCompositor")
         
-        # Используем явный путь к драйверу
+        # Дополнительные настройки для обхода детекции
+        self.options.add_argument("--disable-blink-features=AutomationControlled")
+        self.options.add_experimental_option("excludeSwitches", ["enable-automation"])
+        self.options.add_experimental_option('useAutomationExtension', False)
+        
+        # Настройки User-Agent
+        self.options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
+        
+        # Поиск пути к драйверу
         self.driver_path = driver_path or self._find_default_driver()
         
-        # Инициализация драйвера
-        self.driver = Chrome(
-            options=self.options,
-            driver_executable_path=self.driver_path,
-            headless=headless,
-            use_subprocess=True
+        # Создание сервиса
+        if self.driver_path:
+            service = Service(self.driver_path)
+            self.driver = webdriver.Chrome(service=service, options=self.options)
+        else:
+            # Попытка использовать системный ChromeDriver
+            self.driver = webdriver.Chrome(options=self.options)
+        
+        # Применение stealth настроек
+        selenium_stealth.stealth(
+            self.driver,
+            languages=["ru-RU", "ru"],
+            vendor="Google Inc.",
+            platform="Win32",
+            webgl_vendor="Intel Inc.",
+            renderer="Intel Iris OpenGL Engine",
+            fix_hairline=True,
         )
+        
+        # Дополнительные скрипты для маскировки
+        self.driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
+        self.driver.execute_cdp_cmd('Network.setUserAgentOverride', {
+            "userAgent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+        })
         
         # Инициализация парсеров
         self.product_parser = ProductParser()
@@ -48,11 +87,15 @@ class OzonSellerParser:
         paths = [
             r"C:\chromedriver-win64\chromedriver.exe",
             r"C:\Program Files\chromedriver\chromedriver.exe",
-            "/usr/local/bin/chromedriver"
+            r"C:\chromedriver\chromedriver.exe",
+            "/usr/local/bin/chromedriver",
+            "/usr/bin/chromedriver"
         ]
         for path in paths:
             if os.path.exists(path):
+                logger.info(f"Найден драйвер: {path}")
                 return path
+        logger.warning("ChromeDriver не найден в стандартных путях")
         return None
 
     def parse_page(self, driver, url):
@@ -65,7 +108,16 @@ class OzonSellerParser:
         }
         
         try:
+            # Проверяем, что URL является строкой
+            if not isinstance(url, str) or not url.strip():
+                logger.error(f"Некорректный URL: {url}")
+                result['status'] = "error"
+                result['seller'] = f"Некорректный URL: {url}"
+                return result
+            
+            logger.info(f"Парсинг страницы: {url}")
             driver.get(url)
+            time.sleep(3)  # Дополнительная пауза для stealth
             
             # Проверка наличия товара
             if self._check_out_of_stock(driver, result):
@@ -76,7 +128,7 @@ class OzonSellerParser:
             
             # Скролл к секции с информацией о продавце
             driver.execute_script("window.scrollTo(0, 800);")
-            time.sleep(1)
+            time.sleep(2)
             
             # Поиск и парсинг основной информации о продавце
             self.seller_info_parser.parse_seller_info(driver, result)
@@ -134,9 +186,17 @@ class OzonSellerParser:
     def parse_seller(self, url):
         """Парсинг информации о продавце с переходом на первый товар"""
         try:
+            # Проверяем, что URL является строкой
+            if not isinstance(url, str) or not url.strip():
+                logger.error(f"Некорректный URL продавца: {url}")
+                raise ValueError(f"URL должен быть непустой строкой, получен: {type(url)} - {url}")
+            
             logger.info(f"Открываем URL продавца: {url}")
             self.driver.get(url)
-            time.sleep(3)
+            time.sleep(5)  # Увеличенная пауза для stealth
+            
+            # Имитируем человеческое поведение
+            self._simulate_human_behavior()
             
             # Парсинг основной информации из модального окна
             self.modal_parser.open_shop_modal(self.driver)
@@ -145,38 +205,84 @@ class OzonSellerParser:
             
             # Переходим на первый товар для парсинга доп. информации
             first_product_link = self._get_first_product_link()
-            if first_product_link:
+            if first_product_link and isinstance(first_product_link, str) and first_product_link.strip():
                 logger.info(f"Переходим на первый товар: {first_product_link}")
                 self.driver.get(first_product_link)
-                time.sleep(3)
+                time.sleep(4)
+                
+                # Дополнительная имитация поведения
+                self._simulate_human_behavior()
                 
                 # Парсинг дополнительной информации о продавце
                 additional_details = self.seller_details_parser.parse_seller_details(self.driver)
-                seller_data.update(additional_details)
+                if additional_details:
+                    seller_data.update(additional_details)
+            else:
+                logger.warning("Не удалось найти ссылку на первый товар или ссылка некорректна")
             
             return seller_data
         except Exception as e:
             logger.error(f"Ошибка при парсинге: {str(e)}")
-            self.driver.save_screenshot("error_screenshot.png")
-            logger.error("Скриншот ошибки сохранён как error_screenshot.png")
+            try:
+                self.driver.save_screenshot("error_screenshot.png")
+                logger.error("Скриншот ошибки сохранён как error_screenshot.png")
+            except:
+                logger.error("Не удалось сохранить скриншот")
             raise
         finally:
-            self.driver.quit()
+            self.close()
+
+    def _simulate_human_behavior(self):
+        """Имитация человеческого поведения для обхода детекции"""
+        try:
+            # Случайный скролл
+            self.driver.execute_script("window.scrollTo(0, Math.floor(Math.random() * 500));")
+            time.sleep(1)
+            
+            # Движение мыши (имитация через JavaScript)
+            self.driver.execute_script("""
+                var event = new MouseEvent('mousemove', {
+                    'view': window,
+                    'bubbles': true,
+                    'cancelable': true,
+                    'clientX': Math.random() * window.innerWidth,
+                    'clientY': Math.random() * window.innerHeight
+                });
+                document.dispatchEvent(event);
+            """)
+            time.sleep(0.5)
+            
+        except Exception as e:
+            logger.debug(f"Ошибка при имитации поведения: {str(e)}")
 
     def _get_first_product_link(self):
         """Получение ссылки на первый товар продавца"""
         try:
+            # Ждем загрузки товаров
+            time.sleep(3)
+            
             # Ищем первую ссылку на товар
             product_links = self.driver.find_elements(By.CSS_SELECTOR, 'a[href*="/product/"]')
             if product_links:
                 first_link = product_links[0].get_attribute('href')
-                return first_link
-            return None
+                # Проверяем, что ссылка является строкой
+                if isinstance(first_link, str) and first_link.strip():
+                    return first_link
+                else:
+                    logger.warning(f"Найденная ссылка не является строкой: {type(first_link)} - {first_link}")
+                    return None
+            else:
+                logger.warning("Не найдено ссылок на товары")
+                return None
         except Exception as e:
             logger.error(f"Ошибка при поиске ссылки на товар: {str(e)}")
             return None
 
     def close(self):
         """Закрытие драйвера"""
-        if hasattr(self, 'driver') and self.driver:
-            self.driver.quit()
+        try:
+            if hasattr(self, 'driver') and self.driver:
+                self.driver.quit()
+                logger.info("Драйвер успешно закрыт")
+        except Exception as e:
+            logger.warning(f"Ошибка при закрытии драйвера: {str(e)}")

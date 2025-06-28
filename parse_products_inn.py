@@ -17,7 +17,7 @@ def run_product_inn_parser():
         print("🔗 В файле должны быть ссылки на товары Ozon (по одной на строку)")
         
         # Создание парсера
-        parser = ProductINNParser(headless=False)  # headless=True для работы в фоне
+        parser = ProductINNParser()  # headless=True для работы в фоне
         
         # Проверка наличия файла products.txt
         product_urls = parser.load_product_urls()

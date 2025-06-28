@@ -19,7 +19,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 class ProductINNParser:
-    def __init__(self, headless=False):
+    def __init__(self, headless=True):
         """Инициализация парсера ИНН для товаров"""
         self.seller_parser = OzonSellerParser(headless=headless)
         self.driver = self.seller_parser.driver
