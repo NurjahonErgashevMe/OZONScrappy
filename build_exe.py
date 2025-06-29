@@ -1,4 +1,4 @@
-# build_exe.py - Скрипт для создания .exe с автоматическим поиском путей
+# build_exe.py - Исправленный скрипт для создания OZONScrappy.exe
 import os
 import sys
 import subprocess
@@ -28,7 +28,7 @@ def get_selenium_stealth_path():
         print("❌ selenium_stealth не установлен")
         return None, None
 
-def create_dynamic_spec_file(main_file='main.py'):
+def create_dynamic_spec_file(main_file='main.py', app_name='OZONScrappy', icon_path='logo.ico'):
     """Создает .spec файл с динамически найденными путями"""
     
     stealth_path, js_path = get_selenium_stealth_path()
@@ -37,10 +37,19 @@ def create_dynamic_spec_file(main_file='main.py'):
         print("❌ Не удалось найти selenium_stealth")
         return False
     
+    # Проверяем существование иконки
+    if not os.path.exists(icon_path):
+        print(f"⚠️  Иконка {icon_path} не найдена, создаю без иконки")
+        icon_line = ""
+    else:
+        print(f"✅ Иконка найдена: {icon_path}")
+        icon_line = f"    icon='{icon_path}',"
+    
     # Нормализуем пути для Windows
     js_path = js_path.replace('\\', '\\\\')
     
     spec_content = f'''# -*- mode: python ; coding: utf-8 -*-
+# Auto-generated spec file for {app_name}
 
 block_cipher = None
 
@@ -71,41 +80,44 @@ exe = EXE(
     a.zipfiles,
     a.datas,
     [],
-    name='{main_file.replace(".py", "")}',
+    name='{app_name}',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
     upx=True,
     upx_exclude=[],
     runtime_tmpdir=None,
-    console=True,
+    console=False,  # Без консоли - красивый GUI
     disable_windowed_traceback=False,
     argv_emulation=False,
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
+{icon_line}
 )
 '''
     
-    spec_filename = f'{main_file.replace(".py", "")}.spec'
+    spec_filename = f'{app_name}.spec'
     
     with open(spec_filename, 'w', encoding='utf-8') as f:
         f.write(spec_content)
     
     print(f"✅ Создан файл: {spec_filename}")
+    print(f"🎯 Название приложения: {app_name}")
+    print(f"🖼️  Консоль: Отключена (GUI режим)")
     return spec_filename
 
-def build_exe_with_dynamic_paths(main_file='main.py'):
+def build_exe_with_dynamic_paths(main_file='main.py', app_name='OZONScrappy', icon_path='logo.ico'):
     """Полный процесс создания .exe с автоматическим поиском путей"""
     
     print("🔍 Поиск selenium_stealth...")
-    spec_file = create_dynamic_spec_file(main_file)
+    spec_file = create_dynamic_spec_file(main_file, app_name, icon_path)
     
     if not spec_file:
         print("❌ Не удалось создать .spec файл")
         return False
     
-    print(f"🚀 Сборка .exe файла...")
+    print(f"🚀 Сборка {app_name}.exe...")
     try:
         # Запускаем PyInstaller
         result = subprocess.run([
@@ -115,8 +127,10 @@ def build_exe_with_dynamic_paths(main_file='main.py'):
         ], capture_output=True, text=True)
         
         if result.returncode == 0:
-            print("✅ .exe файл успешно создан!")
+            print(f"✅ {app_name}.exe успешно создан!")
             print("📁 Проверьте папку dist/")
+            print("🎯 Консоль отключена - приложение запускается без черного окна")
+            print("🖼️  Иконка установлена (если logo.ico найдена)")
             return True
         else:
             print("❌ Ошибка при сборке:")
@@ -267,8 +281,8 @@ def setup_selenium_stealth():
             return None
 
 if __name__ == "__main__":
-    print("🛠️ Утилита для создания .exe с selenium_stealth")
-    print()
+    print("🛠️ Сборщик OZONScrappy.exe с selenium_stealth")
+    print("=" * 50)
     
     # Получаем название главного файла
     main_file = input("Введите название главного файла (по умолчанию main.py): ").strip()
@@ -279,16 +293,29 @@ if __name__ == "__main__":
         print(f"❌ Файл {main_file} не найден!")
         sys.exit(1)
     
+    # Проверяем наличие иконки
+    icon_path = "logo.ico"
+    if os.path.exists(icon_path):
+        print(f"✅ Иконка найдена: {icon_path}")
+    else:
+        print(f"⚠️  Иконка {icon_path} не найдена - будет использована стандартная")
+    
+    print()
     print(f"📄 Главный файл: {main_file}")
+    print(f"🎯 Название: OZONScrappy.exe")
+    print(f"🖼️  Консоль: Отключена")
+    print(f"🎨 Иконка: {icon_path}")
     print()
     
     # Создаем .exe
-    success = build_exe_with_dynamic_paths(main_file)
+    success = build_exe_with_dynamic_paths(main_file, 'OZONScrappy', icon_path)
     
     if success:
         print()
-        print("🎉 Готово! Ваш .exe файл создан с поддержкой selenium_stealth")
-        print("📁 Файл находится в папке dist/")
+        print("🎉 Готово! OZONScrappy.exe создан успешно!")
+        print("📁 Файл находится в папке dist/OZONScrappy.exe")
+        print("✨ Приложение запускается без консоли")
+        print("🚀 Можете запускать на любом компьютере!")
     else:
         print()
         print("❌ Возникли проблемы при создании .exe")
