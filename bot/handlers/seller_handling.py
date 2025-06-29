@@ -26,12 +26,17 @@ async def handle_seller_url(message: types.Message, state: FSMContext, bot):
     try:
         await telegram_logger.add_log(f"⏳ Начинаем парсинг продавца: {url}")
         
-        # Запускаем парсинг
+        # Запускаем парсинг без callback
         result = await asyncio.to_thread(
             parse_seller_and_products, 
             url, 
-            True
+            True,
         )
+        
+        # Отправляем информацию о продавце после получения результата
+        if result and result.get('seller'):
+            seller_info = result['seller_info']
+            await telegram_logger.send_result_message(seller_info)
         
         if result and result.get('excel_path'):
             await telegram_logger.add_log("✅ Парсинг завершен! Отправляю файл...")

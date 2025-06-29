@@ -313,7 +313,7 @@ class OzonProductParser:
             
             if filename:
                 self.logger.info(f"Данные сохранены в файл: {filename}")
-                return True, filename
+                return True, filename, seller_name
             else:
                 self.logger.error("Ошибка сохранения в Excel")
                 return False

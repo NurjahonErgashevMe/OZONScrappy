@@ -53,7 +53,7 @@ async def handle_inn_urls(message: types.Message, state: FSMContext, bot, mode='
                 
                 # Формируем сообщение
                 result_msg = (
-                    f"✓ Товар {i} обработан:\n"
+                    f"✅ Товар {i} обработан:\n"
                     f"Продавец: {seller_name}\n"
                     f"Компания: {company_name}\n"
                     f"ИНН: {inn}\n"

@@ -9,7 +9,6 @@ from selenium.webdriver.chrome.service import Service
 import selenium_stealth
 from .utils import wait_for_element
 from .product_parser import ProductParser
-from .seller_info_parser import SellerInfoParser
 from .seller_details_parser import SellerDetailsParser
 from .modal_parser import ModalParser
 import logging
@@ -19,7 +18,7 @@ import time
 logger = logging.getLogger(__name__)
 
 class OzonSellerParser:
-    def __init__(self, headless=False, driver_path=None):
+    def __init__(self, headless=True, driver_path=None):
         """Инициализация парсера с stealth режимом"""
         self.options = Options()
         
@@ -28,7 +27,7 @@ class OzonSellerParser:
             self.options.add_argument("--headless")
             
         self.options.add_argument("--window-size=1920,1080")
-        self.options.add_argument("--headless")
+        # self.options.add_argument("--headless")
         self.options.add_argument("--start-maximized")
         self.options.add_argument("--no-sandbox")
         self.options.add_argument("--disable-dev-shm-usage")
@@ -73,7 +72,6 @@ class OzonSellerParser:
         
         # Инициализация парсеров
         self.product_parser = ProductParser()
-        self.seller_info_parser = SellerInfoParser()
         self.seller_details_parser = SellerDetailsParser()
         self.modal_parser = ModalParser()
 
@@ -92,45 +90,6 @@ class OzonSellerParser:
                 return path
         logger.warning("ChromeDriver не найден в стандартных путях")
         return None
-
-    def parse_page(self, driver, url):
-        """Парсинг страницы товара"""
-        result = {
-            'product': 'Not Found', 
-            'seller': 'Not Found', 
-            'status': 'success',
-            'seller_details': {}
-        }
-        
-        try:
-            driver.get(url)
-            time.sleep(3)  # Дополнительная пауза для stealth
-            
-            # Проверка наличия товара
-            if self._check_out_of_stock(driver, result):
-                return result
-            
-            # Поиск названия товара
-            self.product_parser.parse_product_name(driver, result)
-            
-            # Скролл к секции с информацией о продавце
-            driver.execute_script("window.scrollTo(0, 800);")
-            time.sleep(2)
-            
-            # Поиск и парсинг основной информации о продавце
-            self.seller_info_parser.parse_seller_info(driver, result)
-            
-            # Парсинг дополнительной информации (ИНН и т.д.)
-            seller_details = self.seller_details_parser.parse_seller_details(driver)
-            if seller_details:
-                result['seller_details'] = seller_details
-                
-        except Exception as e:
-            result['status'] = "error"
-            result['seller'] = f"Ошибка: {str(e)}"
-            logger.error(f"Ошибка при парсинге страницы: {str(e)}")
-            
-        return result
 
     def _check_out_of_stock(self, driver, result):
         """Проверка наличия товара"""
@@ -182,6 +141,7 @@ class OzonSellerParser:
             
             # Парсинг основной информации из модального окна
             self.modal_parser.open_shop_modal(self.driver)
+                        
             seller_data = self.modal_parser.parse_modal_data(self.driver)
             self.modal_parser.close_modal(self.driver)
             
@@ -191,7 +151,7 @@ class OzonSellerParser:
                 logger.info(f"Переходим на первый товар: {first_product_link}")
                 self.driver.get(first_product_link)
                 time.sleep(4)
-                
+
                 # Дополнительная имитация поведения
                 self._simulate_human_behavior()
                 

@@ -12,33 +12,71 @@ logger = logging.getLogger(__name__)
 
 class ModalParser:
     def open_shop_modal(self, driver):
-        """Открытие модального окна магазина"""
-        # Ожидаем появления виджета sellerTransparency
-        transparency_widget = wait_for_element(
-            driver,
-            (By.CSS_SELECTOR, 'div[data-widget="sellerTransparency"]'),
-            timeout=20
-        )
+        """Открытие модального окна магазина с повторными попытками"""
+        max_attempts = 3
+        attempt_delay = 3  # секунды
         
-        # Ищем кнопку "Магазин" по точному тексту
-        shop_button = transparency_widget.find_element(
-            By.XPATH, 
-            './/div[contains(@class, "b20-b") and .//div[text()="Магазин"]]'
-        )
+        for attempt in range(max_attempts):
+            try:
+                logger.info(f"Попытка {attempt + 1} из {max_attempts} открыть модальное окно")
+                
+                # Ожидаем появления виджета sellerTransparency
+                transparency_widget = wait_for_element(
+                    driver,
+                    (By.CSS_SELECTOR, 'div[data-widget="sellerTransparency"]'),
+                    timeout=20
+                )
+                
+                # Ищем кнопку "Магазин" по точному тексту
+                shop_button = transparency_widget.find_element(
+                    By.XPATH, 
+                    './/div[contains(@class, "b20-b") and .//div[text()="Магазин"]]'
+                )
+                
+                # Используем JavaScript для клика, чтобы обойти проблему с перекрытием
+                driver.execute_script("arguments[0].click();", shop_button)
+                logger.info("Клик по кнопке 'Магазин' выполнен с помощью JavaScript")
+                
+                # Ждем появления модального окна
+                time.sleep(1)
+                
+                # Проверяем, появилось ли модальное окно
+                try:
+                    modal = wait_for_element(
+                        driver,
+                        (By.CSS_SELECTOR, 'div[data-widget="modalLayout"]'),
+                        timeout=5
+                    )
+                    logger.info("Модальное окно успешно открыто")
+                    return True  # Успешно открыли модальное окно
+                    
+                except Exception as e:
+                    logger.warning(f"Модальное окно не появилось на попытке {attempt + 1}: {str(e)}")
+                    
+                    # Если это не последняя попытка, ждем перед следующей
+                    if attempt < max_attempts - 1:
+                        logger.info(f"Ожидание {attempt_delay} секунд перед следующей попыткой")
+                        time.sleep(attempt_delay)
+                        continue
+                    else:
+                        # Последняя попытка неудачна
+                        logger.error("Все попытки открыть модальное окно исчерпаны")
+                        raise Exception("Не удалось открыть модальное окно после всех попыток")
+                        
+            except Exception as e:
+                logger.error(f"Ошибка на попытке {attempt + 1}: {str(e)}")
+                
+                # Если это не последняя попытка, ждем и пробуем снова
+                if attempt < max_attempts - 1:
+                    logger.info(f"Ожидание {attempt_delay} секунд перед следующей попыткой")
+                    time.sleep(attempt_delay)
+                    continue
+                else:
+                    # Последняя попытка неудачна
+                    logger.error("Все попытки открыть модальное окно исчерпаны")
+                    raise Exception(f"Не удалось открыть модальное окно: {str(e)}")
         
-        # Используем JavaScript для клика, чтобы обойти проблему с перекрытием
-        driver.execute_script("arguments[0].click();", shop_button)
-        logger.info("Клик по кнопке 'Магазин' выполнен с помощью JavaScript")
-        
-        # Добавляем небольшую задержку для появления модального окна
-        time.sleep(1)
-        
-        # Ожидаем появления модального окна
-        wait_for_element(
-            driver,
-            (By.CSS_SELECTOR, 'div[data-widget="modalLayout"]'),
-            timeout=15
-        )
+        return False
 
     def parse_modal_data(self, driver):
         """Парсинг данных из модального окна"""
