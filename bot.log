@@ -42,3 +42,543 @@
 2025-06-29 21:18:59,471 - central - INFO - Парсим страницу: https://www.ozon.ru/product/trade-electronics-sistemnyy-blok-intel-core-i7-7700-ram-32-gb-ssd-1024-gb-amd-radeon-rx-580-8-gb-2009635132/
 2025-06-29 21:19:04,695 - central - INFO - Найдено 1 кнопок по селектору: div.ea20-a.k9j_27.n7j_27 button.ga20-a
 2025-06-29 21:19:04,782 - central - INFO - Найдена кнопка информации #0 с селектором: div.ea20-a.k9j_27.n7j_27 button.ga20-a
+2025-06-30 01:09:24,763 - root - INFO - Приложение запущено
+2025-06-30 01:10:21,043 - root - INFO - Конфигурация успешно сохранена
+2025-06-30 01:10:23,297 - root - INFO - Конфигурация прошла проверку
+2025-06-30 01:10:25,229 - root - INFO - Конфигурация успешно загружена
+2025-06-30 01:10:30,267 - root - INFO - Попытка запуска бота...
+2025-06-30 01:10:30,268 - utils - INFO - Загрузка конфигурации из C:\Users\nurja\OneDrive\Рабочий стол\ozon_seller_scrappy\gui\config.txt
+2025-06-30 01:10:30,295 - utils - INFO - Загрузка конфигурации из C:\Users\nurja\OneDrive\Рабочий стол\ozon_seller_scrappy\gui\config.txt
+2025-06-30 01:10:30,332 - bot.register_handlers - INFO - Все обработчики успешно зарегистрированы
+2025-06-30 01:10:30,332 - root - INFO - Telegram бот инициализирован
+2025-06-30 01:10:30,332 - aiogram.dispatcher - INFO - Start polling
+2025-06-30 01:10:32,187 - aiogram.dispatcher - INFO - Run polling for bot @ozonscrappybot id=7960498974 - 'OZON scrappy'
+2025-06-30 01:10:32,306 - root - INFO - Бот успешно запущен и готов к работе
+2025-06-30 01:10:41,804 - aiogram.event - INFO - Update id=570827614 is handled. Duration 1467 ms by bot id=7960498974
+2025-06-30 01:10:45,787 - aiogram.event - INFO - Update id=570827615 is handled. Duration 437 ms by bot id=7960498974
+2025-06-30 01:11:02,036 - root - INFO - Обновление логов...
+2025-06-30 01:11:14,030 - src.parser.inn_parser - INFO - Начинаем парсинг 5 продавцов
+2025-06-30 01:11:14,031 - src.parser.inn_parser - INFO - 
+============================================================
+2025-06-30 01:11:14,032 - src.parser.inn_parser - INFO - Парсинг продавца 1/5: https://www.ozon.ru/seller/trade-electronics-183434/?miniapp=seller_183434
+2025-06-30 01:11:14,032 - src.parser.inn_parser - INFO - ============================================================
+2025-06-30 01:11:14,032 - src.parser.inn_parser - INFO - Открываем страницу продавца: https://www.ozon.ru/seller/trade-electronics-183434/?miniapp=seller_183434
+2025-06-30 01:11:29,987 - src.parser.inn_parser - WARNING - Ошибка при получении названия продавца: ('Connection aborted.', ConnectionResetError(10054, 'Удаленный хост принудительно разорвал существующее подключение', None, 10054, None))
+2025-06-30 01:11:36,044 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000020F837A6590>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение')': /session/db2432d288555ac713efb5b0214d557b/elements
+2025-06-30 01:11:48,088 - root - INFO - Конфигурация успешно загружена
+2025-06-30 01:11:48,106 - root - INFO - Приложение запущено
+2025-06-30 01:11:55,336 - root - INFO - Попытка запуска бота...
+2025-06-30 01:11:55,338 - utils - INFO - Загрузка конфигурации из C:\Users\nurja\OneDrive\Рабочий стол\ozon_seller_scrappy\gui\config.txt
+2025-06-30 01:11:55,352 - utils - INFO - Загрузка конфигурации из C:\Users\nurja\OneDrive\Рабочий стол\ozon_seller_scrappy\gui\config.txt
+2025-06-30 01:11:55,377 - bot.register_handlers - INFO - Все обработчики успешно зарегистрированы
+2025-06-30 01:11:55,377 - root - INFO - Telegram бот инициализирован
+2025-06-30 01:11:55,378 - aiogram.dispatcher - INFO - Start polling
+2025-06-30 01:11:56,679 - aiogram.dispatcher - INFO - Run polling for bot @ozonscrappybot id=7960498974 - 'OZON scrappy'
+2025-06-30 01:11:57,374 - root - INFO - Бот успешно запущен и готов к работе
+2025-06-30 01:12:10,728 - aiogram.event - INFO - Update id=570827617 is handled. Duration 1547 ms by bot id=7960498974
+2025-06-30 01:12:16,295 - aiogram.event - INFO - Update id=570827618 is handled. Duration 358 ms by bot id=7960498974
+2025-06-30 01:12:24,343 - src.parser.inn_parser - INFO - Начинаем парсинг 5 продавцов
+2025-06-30 01:12:24,344 - src.parser.inn_parser - INFO - 
+============================================================
+2025-06-30 01:12:24,344 - src.parser.inn_parser - INFO - Парсинг продавца 1/5: https://www.ozon.ru/seller/trade-electronics-183434/?miniapp=seller_183434
+2025-06-30 01:12:24,345 - src.parser.inn_parser - INFO - ============================================================
+2025-06-30 01:12:24,345 - src.parser.inn_parser - INFO - Открываем страницу продавца: https://www.ozon.ru/seller/trade-electronics-183434/?miniapp=seller_183434
+2025-06-30 01:12:44,620 - root - INFO - Обновление логов...
+2025-06-30 01:13:11,138 - src.parser.inn_parser - INFO - Найдено 13 уникальных ссылок на товары
+2025-06-30 01:13:11,138 - src.parser.inn_parser - INFO - Найдено 13 товаров продавца
+2025-06-30 01:13:11,139 - src.parser.inn_parser - INFO - Попытка 1/10: переходим к товару https://www.ozon.ru/product/trade-electronics-sistemnyy-blok-intel-core-i7-7700-ram-32-gb-ssd-1024-gb-amd-radeon-rx-580-8-gb-2009635132/
+2025-06-30 01:13:17,985 - central - INFO - Попытка 1 из 10 получить данные продавца
+2025-06-30 01:13:17,993 - central - INFO - Парсим страницу: https://www.ozon.ru/product/trade-electronics-sistemnyy-blok-intel-core-i7-7700-ram-32-gb-ssd-1024-gb-amd-radeon-rx-580-8-gb-2009635132/?sh=W_sffCKjRA
+2025-06-30 01:13:27,751 - central - INFO - Найдено 1 кнопок по селектору: div.ea20-a.k9j_27.n7j_27 button.ga20-a
+2025-06-30 01:13:28,425 - central - INFO - Найдена кнопка информации #0 с селектором: div.ea20-a.k9j_27.n7j_27 button.ga20-a
+2025-06-30 01:13:29,838 - central - INFO - Количество vue-portal-target до клика: 1
+2025-06-30 01:13:30,749 - central - INFO - Клик по кнопке информации выполнен, ожидаем появления тултипа...
+2025-06-30 01:13:30,829 - central - INFO - Найден новый тултип:
+2025-06-30 01:13:30,830 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Нашивочников Дмитрий Сергеевич</p><p class="jn8_27">320508100337274</p><p class...
+2025-06-30 01:13:30,831 - central - INFO - Текст: 
+2025-06-30 01:13:31,122 - central - INFO - Найден новый тултип:
+2025-06-30 01:13:31,122 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Нашивочников Дмитрий Сергеевич</p><p class="jn8_27">320508100337274</p><p class...
+2025-06-30 01:13:31,122 - central - INFO - Текст: 
+2025-06-30 01:13:31,373 - central - INFO - Найден новый тултип:
+2025-06-30 01:13:31,373 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Нашивочников Дмитрий Сергеевич</p><p class="jn8_27">320508100337274</p><p class...
+2025-06-30 01:13:31,374 - central - INFO - Текст: 
+2025-06-30 01:13:31,630 - central - INFO - Найден новый тултип:
+2025-06-30 01:13:31,631 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Нашивочников Дмитрий Сергеевич</p><p class="jn8_27">320508100337274</p><p class...
+2025-06-30 01:13:31,631 - central - INFO - Текст: 
+2025-06-30 01:13:31,896 - central - INFO - Найден новый тултип:
+2025-06-30 01:13:31,896 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Нашивочников Дмитрий Сергеевич</p><p class="jn8_27">320508100337274</p><p class...
+2025-06-30 01:13:31,897 - central - INFO - Текст: 
+2025-06-30 01:13:32,140 - central - INFO - Найден новый тултип:
+2025-06-30 01:13:32,140 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Нашивочников Дмитрий Сергеевич</p><p class="jn8_27">320508100337274</p><p class...
+2025-06-30 01:13:32,141 - central - INFO - Текст: 
+2025-06-30 01:13:32,378 - central - INFO - Найден новый тултип:
+2025-06-30 01:13:32,379 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Нашивочников Дмитрий Сергеевич</p><p class="jn8_27">320508100337274</p><p class...
+2025-06-30 01:13:32,379 - central - INFO - Текст: 
+2025-06-30 01:13:32,627 - central - INFO - Найден новый тултип:
+2025-06-30 01:13:32,627 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Нашивочников Дмитрий Сергеевич</p><p class="jn8_27">320508100337274</p><p class...
+2025-06-30 01:13:32,628 - central - INFO - Текст: 
+2025-06-30 01:13:32,877 - central - INFO - Найден новый тултип:
+2025-06-30 01:13:32,878 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Нашивочников Дмитрий Сергеевич</p><p class="jn8_27">320508100337274</p><p class...
+2025-06-30 01:13:32,879 - central - INFO - Текст: 
+2025-06-30 01:13:33,125 - central - INFO - Найден новый тултип:
+2025-06-30 01:13:33,126 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Нашивочников Дмитрий Сергеевич</p><p class="jn8_27">320508100337274</p><p class...
+2025-06-30 01:13:33,126 - central - INFO - Текст: 
+2025-06-30 01:13:33,449 - central - INFO - Найден новый тултип:
+2025-06-30 01:13:33,449 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5 ea20-b3" style="z-index: 500; min-width: 264px; max-width: 264px; position: absolute; left: 393px; top: 2048px; margin: 0px;" data-popper-placement="top"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p cl...
+2025-06-30 01:13:33,449 - central - INFO - Текст: ИП Нашивочников Дмитрий Сергеевич
+320508100337274
+Режим работы — согласно режиму работы Ozon
+2025-06-30 01:13:33,451 - central - INFO - Тултип содержит данные продавца
+2025-06-30 01:13:33,476 - central - INFO - Парсим текст: ИП Нашивочников Дмитрий Сергеевич
+320508100337274
+Режим работы — согласно режиму работы Ozon
+2025-06-30 01:13:33,478 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5 ea20-b3" style="z-index: 500; min-width: 264px; max-width: 264px; position: absolute; left: 393px; top: 2048px; margin: 0px;" data-popper-placement="top"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Нашивочников Дмитрий Сергеевич</p><p class="jn8_27">320508100337274</p><p class="jn8_27">Режим работы — согласно режиму работы Ozon</p> <!----></div> <div class="ea20-a9" style="positi...
+2025-06-30 01:13:33,479 - central - INFO - Найдено 3 строк для обработки
+2025-06-30 01:13:33,479 - central - INFO - Обрабатываем строку 1: 'ИП Нашивочников Дмитрий Сергеевич'
+2025-06-30 01:13:33,479 - central - INFO - ✓ Название компании: ИП Нашивочников Дмитрий Сергеевич
+2025-06-30 01:13:33,480 - central - INFO - Обрабатываем строку 2: '320508100337274'
+2025-06-30 01:13:33,480 - central - INFO - ✓ ИНН/ОГРН: 320508100337274
+2025-06-30 01:13:33,480 - central - INFO - Обрабатываем строку 3: 'Режим работы — согласно режиму работы Ozon'
+2025-06-30 01:13:33,481 - central - INFO - ✓ Режим работы: Режим работы — согласно режиму работы Ozon
+2025-06-30 01:13:33,481 - central - INFO - Итоговые данные: {'company_name': 'ИП Нашивочников Дмитрий Сергеевич', 'inn': '320508100337274', 'working_hours': 'Режим работы — согласно режиму работы Ozon'}
+2025-06-30 01:13:33,481 - central - INFO - Успешно получены данные продавца с попытки 1
+2025-06-30 01:13:33,481 - src.parser.inn_parser - INFO - Получены данные продавца: {'company_name': 'ИП Нашивочников Дмитрий Сергеевич', 'inn': '320508100337274'}
+2025-06-30 01:13:33,481 - src.parser.inn_parser - INFO - ✓ ИНН найден: 320508100337274
+2025-06-30 01:13:33,481 - src.parser.inn_parser - INFO - ✓ Продавец 1 обработан. ИНН: 320508100337274
+2025-06-30 01:13:35,483 - src.parser.inn_parser - INFO - 
+============================================================
+2025-06-30 01:13:35,484 - src.parser.inn_parser - INFO - Парсинг продавца 2/5: https://www.ozon.ru/seller/logicpc-1837469/?miniapp=seller_1837469
+2025-06-30 01:13:35,484 - src.parser.inn_parser - INFO - ============================================================
+2025-06-30 01:13:35,484 - src.parser.inn_parser - INFO - Открываем страницу продавца: https://www.ozon.ru/seller/logicpc-1837469/?miniapp=seller_1837469
+2025-06-30 01:13:47,556 - src.parser.inn_parser - INFO - Найдено 20 уникальных ссылок на товары
+2025-06-30 01:13:47,556 - src.parser.inn_parser - INFO - Найдено 20 товаров продавца
+2025-06-30 01:13:47,556 - src.parser.inn_parser - INFO - Попытка 1/10: переходим к товару https://www.ozon.ru/product/mastero-sistemnyy-blok-gfx07-intel-core-i5-4570-ram-16-gb-ssd-512-gb-intel-hd-graphics-windows-1485205789/
+2025-06-30 01:14:02,172 - central - INFO - Попытка 1 из 10 получить данные продавца
+2025-06-30 01:14:02,182 - central - INFO - Парсим страницу: https://www.ozon.ru/product/mastero-sistemnyy-blok-gfx07-intel-core-i5-4570-ram-16-gb-ssd-512-gb-intel-hd-graphics-windows-1485205789/
+2025-06-30 01:14:04,374 - central - INFO - Найдено 1 кнопок по селектору: div.ea20-a.k9j_27.n7j_27 button.ga20-a
+2025-06-30 01:14:04,569 - central - INFO - Найдена кнопка информации #0 с селектором: div.ea20-a.k9j_27.n7j_27 button.ga20-a
+2025-06-30 01:14:05,958 - central - INFO - Количество vue-portal-target до клика: 1
+2025-06-30 01:14:07,466 - central - INFO - Клик по кнопке информации выполнен, ожидаем появления тултипа...
+2025-06-30 01:14:07,580 - central - INFO - Найден новый тултип:
+2025-06-30 01:14:07,580 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5 ea20-b3" data-popper-placement="top" style="z-index: 500; min-width: 264px; max-width: 264px; position: absolute; left: 297px; top: 1410px; margin: 0px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p cl...
+2025-06-30 01:14:07,581 - central - INFO - Текст: ООО "ЛОГИКА"
+630007, Россия, Новосибирская Область, г Новосибирск, ул Коммунистическая, д 2
+1112224007147
+Режим работы — согласно режиму работы Ozon
+2025-06-30 01:14:07,581 - central - INFO - Тултип содержит данные продавца
+2025-06-30 01:14:07,600 - central - INFO - Парсим текст: ООО "ЛОГИКА"
+630007, Россия, Новосибирская Область, г Новосибирск, ул Коммунистическая, д 2
+1112224007147
+Режим работы — согласно режиму работы Ozon
+2025-06-30 01:14:07,600 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5 ea20-b3" data-popper-placement="top" style="z-index: 500; min-width: 264px; max-width: 264px; position: absolute; left: 297px; top: 1410px; margin: 0px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ООО "ЛОГИКА"</p><p class="jn8_27">630007, Россия, Новосибирская Область, г Новосибирск, ул Коммунистическая, д 2</p><p class="jn8_27">1112224007147</p><p class="jn8_27">Режим работы — сог...
+2025-06-30 01:14:07,602 - central - INFO - Найдено 4 строк для обработки
+2025-06-30 01:14:07,605 - central - INFO - Обрабатываем строку 1: 'ООО "ЛОГИКА"'
+2025-06-30 01:14:07,609 - central - INFO - ✓ Название компании: ООО "ЛОГИКА"
+2025-06-30 01:14:07,611 - central - INFO - Обрабатываем строку 2: '630007, Россия, Новосибирская Область, г Новосибирск, ул Коммунистическая, д 2'
+2025-06-30 01:14:07,611 - central - INFO - • Прочая информация: 630007, Россия, Новосибирская Область, г Новосибирск, ул Коммунистическая, д 2
+2025-06-30 01:14:07,613 - central - INFO - Обрабатываем строку 3: '1112224007147'
+2025-06-30 01:14:07,614 - central - INFO - ✓ ИНН/ОГРН: 1112224007147
+2025-06-30 01:14:07,614 - central - INFO - Обрабатываем строку 4: 'Режим работы — согласно режиму работы Ozon'
+2025-06-30 01:14:07,615 - central - INFO - ✓ Режим работы: Режим работы — согласно режиму работы Ozon
+2025-06-30 01:14:07,615 - central - INFO - Итоговые данные: {'company_name': 'ООО "ЛОГИКА"', 'other_info': ['630007, Россия, Новосибирская Область, г Новосибирск, ул Коммунистическая, д 2'], 'inn': '1112224007147', 'working_hours': 'Режим работы — согласно режиму работы Ozon'}
+2025-06-30 01:14:07,615 - central - INFO - Успешно получены данные продавца с попытки 1
+2025-06-30 01:14:07,616 - src.parser.inn_parser - INFO - Получены данные продавца: {'company_name': 'ООО "ЛОГИКА"', 'inn': '1112224007147'}
+2025-06-30 01:14:07,616 - src.parser.inn_parser - INFO - ✓ ИНН найден: 1112224007147
+2025-06-30 01:14:07,616 - src.parser.inn_parser - INFO - ✓ Продавец 2 обработан. ИНН: 1112224007147
+2025-06-30 01:14:09,617 - src.parser.inn_parser - INFO - 
+============================================================
+2025-06-30 01:14:09,621 - src.parser.inn_parser - INFO - Парсинг продавца 3/5: https://www.ozon.ru/seller/ooo-robotkomp-korp-2756/?miniapp=seller_2756
+2025-06-30 01:14:09,621 - src.parser.inn_parser - INFO - ============================================================
+2025-06-30 01:14:09,621 - src.parser.inn_parser - INFO - Открываем страницу продавца: https://www.ozon.ru/seller/ooo-robotkomp-korp-2756/?miniapp=seller_2756
+2025-06-30 01:14:18,256 - src.parser.inn_parser - INFO - Найдено 12 уникальных ссылок на товары
+2025-06-30 01:14:18,256 - src.parser.inn_parser - INFO - Найдено 12 товаров продавца
+2025-06-30 01:14:18,256 - src.parser.inn_parser - INFO - Попытка 1/10: переходим к товару https://www.ozon.ru/product/robotcomp-sistemnyy-blok-m-16-v2-plus-aqua-intel-core-i5-14400f-ram-64-gb-ssd-960-gb-nvidia-2229057297/
+2025-06-30 01:14:21,759 - central - INFO - Попытка 1 из 10 получить данные продавца
+2025-06-30 01:14:21,763 - central - INFO - Парсим страницу: https://www.ozon.ru/product/robotcomp-sistemnyy-blok-m-16-v2-plus-aqua-intel-core-i5-14400f-ram-64-gb-ssd-960-gb-nvidia-2229057297/
+2025-06-30 01:14:23,876 - central - INFO - Найдено 1 кнопок по селектору: div.ea20-a.k9j_27.n7j_27 button.ga20-a
+2025-06-30 01:14:23,945 - central - INFO - Найдена кнопка информации #0 с селектором: div.ea20-a.k9j_27.n7j_27 button.ga20-a
+2025-06-30 01:14:25,424 - central - INFO - Количество vue-portal-target до клика: 1
+2025-06-30 01:14:26,277 - central - INFO - Клик по кнопке информации выполнен, ожидаем появления тултипа...
+2025-06-30 01:14:26,344 - central - INFO - Найден новый тултип:
+2025-06-30 01:14:26,344 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5 ea20-b3" data-popper-placement="top" style="z-index: 500; min-width: 264px; max-width: 264px; position: absolute; left: 417px; top: 1228px; margin: 0px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p cl...
+2025-06-30 01:14:26,344 - central - INFO - Текст: ООО "РОБОТКОМП КОРП"
+Московская область, Г.О. ДОЛГОПРУДНЫЙ, Г ДОЛГОПРУДНЫЙ, ПРОЕЗД ПРОМЫШЛЕННЫЙ, Д. 14, ЭТ. 6, ПОМЕЩ. XVI
+1155047011481
+Режим работы — согласно режиму работы Ozon
+2025-06-30 01:14:26,345 - central - INFO - Тултип содержит данные продавца
+2025-06-30 01:14:26,381 - central - INFO - Парсим текст: ООО "РОБОТКОМП КОРП"
+Московская область, Г.О. ДОЛГОПРУДНЫЙ, Г ДОЛГОПРУДНЫЙ, ПРОЕЗД ПРОМЫШЛЕННЫЙ, Д. 14, ЭТ. 6, ПОМЕЩ. XVI
+1155047011481
+Режим работы — согласно режиму работы Ozon
+2025-06-30 01:14:26,381 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5 ea20-b3" data-popper-placement="top" style="z-index: 500; min-width: 264px; max-width: 264px; position: absolute; left: 417px; top: 1228px; margin: 0px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ООО "РОБОТКОМП КОРП"</p><p class="jn8_27">Московская область, Г.О. ДОЛГОПРУДНЫЙ, Г ДОЛГОПРУДНЫЙ, ПРОЕЗД ПРОМЫШЛЕННЫЙ, Д. 14, ЭТ. 6, ПОМЕЩ. XVI</p><p class="jn8_27">1155047011481</p><p cla...
+2025-06-30 01:14:26,382 - central - INFO - Найдено 4 строк для обработки
+2025-06-30 01:14:26,382 - central - INFO - Обрабатываем строку 1: 'ООО "РОБОТКОМП КОРП"'
+2025-06-30 01:14:26,383 - central - INFO - ✓ Название компании: ООО "РОБОТКОМП КОРП"
+2025-06-30 01:14:26,383 - central - INFO - Обрабатываем строку 2: 'Московская область, Г.О. ДОЛГОПРУДНЫЙ, Г ДОЛГОПРУДНЫЙ, ПРОЕЗД ПРОМЫШЛЕННЫЙ, Д. 14, ЭТ. 6, ПОМЕЩ. XVI'
+2025-06-30 01:14:26,384 - central - INFO - • Прочая информация: Московская область, Г.О. ДОЛГОПРУДНЫЙ, Г ДОЛГОПРУДНЫЙ, ПРОЕЗД ПРОМЫШЛЕННЫЙ, Д. 14, ЭТ. 6, ПОМЕЩ. XVI
+2025-06-30 01:14:26,390 - central - INFO - Обрабатываем строку 3: '1155047011481'
+2025-06-30 01:14:26,392 - central - INFO - ✓ ИНН/ОГРН: 1155047011481
+2025-06-30 01:14:26,393 - central - INFO - Обрабатываем строку 4: 'Режим работы — согласно режиму работы Ozon'
+2025-06-30 01:14:26,394 - central - INFO - ✓ Режим работы: Режим работы — согласно режиму работы Ozon
+2025-06-30 01:14:26,394 - central - INFO - Итоговые данные: {'company_name': 'ООО "РОБОТКОМП КОРП"', 'other_info': ['Московская область, Г.О. ДОЛГОПРУДНЫЙ, Г ДОЛГОПРУДНЫЙ, ПРОЕЗД ПРОМЫШЛЕННЫЙ, Д. 14, ЭТ. 6, ПОМЕЩ. XVI'], 'inn': '1155047011481', 'working_hours': 'Режим работы — согласно режиму работы Ozon'}
+2025-06-30 01:14:26,395 - central - INFO - Успешно получены данные продавца с попытки 1
+2025-06-30 01:14:26,395 - src.parser.inn_parser - INFO - Получены данные продавца: {'company_name': 'ООО "РОБОТКОМП КОРП"', 'inn': '1155047011481'}
+2025-06-30 01:14:26,395 - src.parser.inn_parser - INFO - ✓ ИНН найден: 1155047011481
+2025-06-30 01:14:26,395 - src.parser.inn_parser - INFO - ✓ Продавец 3 обработан. ИНН: 1155047011481
+2025-06-30 01:14:28,396 - src.parser.inn_parser - INFO - 
+============================================================
+2025-06-30 01:14:28,396 - src.parser.inn_parser - INFO - Парсинг продавца 4/5: https://www.ozon.ru/seller/jetgame-1518463/?miniapp=seller_1518463
+2025-06-30 01:14:28,396 - src.parser.inn_parser - INFO - ============================================================
+2025-06-30 01:14:28,396 - src.parser.inn_parser - INFO - Открываем страницу продавца: https://www.ozon.ru/seller/jetgame-1518463/?miniapp=seller_1518463
+2025-06-30 01:14:36,224 - src.parser.inn_parser - INFO - Найдено 12 уникальных ссылок на товары
+2025-06-30 01:14:36,224 - src.parser.inn_parser - INFO - Найдено 12 товаров продавца
+2025-06-30 01:14:36,224 - src.parser.inn_parser - INFO - Попытка 1/10: переходим к товару https://www.ozon.ru/product/jetgame-sistemnyy-blok-igrovoy-kompyuter-intel-xeon-e5-2650v2-ram-32-gb-ssd-512-gb-nvidia-geforce-1315711257/
+2025-06-30 01:14:43,862 - central - INFO - Попытка 1 из 10 получить данные продавца
+2025-06-30 01:14:43,869 - central - INFO - Парсим страницу: https://www.ozon.ru/product/jetgame-sistemnyy-blok-igrovoy-kompyuter-intel-xeon-e5-2650v2-ram-32-gb-ssd-512-gb-nvidia-geforce-1315711257/
+2025-06-30 01:14:46,063 - central - INFO - Найдено 1 кнопок по селектору: div.ea20-a.k9j_27.n7j_27 button.ga20-a
+2025-06-30 01:14:46,223 - central - INFO - Найдена кнопка информации #0 с селектором: div.ea20-a.k9j_27.n7j_27 button.ga20-a
+2025-06-30 01:14:47,705 - central - INFO - Количество vue-portal-target до клика: 1
+2025-06-30 01:14:48,638 - central - INFO - Клик по кнопке информации выполнен, ожидаем появления тултипа...
+2025-06-30 01:14:48,720 - central - INFO - Найден новый тултип:
+2025-06-30 01:14:48,723 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5 ea20-b3" data-popper-placement="top" style="z-index: 500; min-width: 264px; max-width: 264px; position: absolute; left: 301px; top: 1020px; margin: 0px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p cl...
+2025-06-30 01:14:48,726 - central - INFO - Текст: ИП Курлов Александр Алексеевич
+323508100624725
+Режим работы — согласно режиму работы Ozon
+2025-06-30 01:14:48,727 - central - INFO - Тултип содержит данные продавца
+2025-06-30 01:14:48,764 - central - INFO - Парсим текст: ИП Курлов Александр Алексеевич
+323508100624725
+Режим работы — согласно режиму работы Ozon
+2025-06-30 01:14:48,765 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5 ea20-b3" data-popper-placement="top" style="z-index: 500; min-width: 264px; max-width: 264px; position: absolute; left: 301px; top: 1020px; margin: 0px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Курлов Александр Алексеевич</p><p class="jn8_27">323508100624725</p><p class="jn8_27">Режим работы — согласно режиму работы Ozon</p> <!----></div> <div class="ea20-a9" style="position:...
+2025-06-30 01:14:48,773 - central - INFO - Найдено 3 строк для обработки
+2025-06-30 01:14:48,773 - central - INFO - Обрабатываем строку 1: 'ИП Курлов Александр Алексеевич'
+2025-06-30 01:14:48,774 - central - INFO - ✓ Название компании: ИП Курлов Александр Алексеевич
+2025-06-30 01:14:48,775 - central - INFO - Обрабатываем строку 2: '323508100624725'
+2025-06-30 01:14:48,775 - central - INFO - ✓ ИНН/ОГРН: 323508100624725
+2025-06-30 01:14:48,775 - central - INFO - Обрабатываем строку 3: 'Режим работы — согласно режиму работы Ozon'
+2025-06-30 01:14:48,775 - central - INFO - ✓ Режим работы: Режим работы — согласно режиму работы Ozon
+2025-06-30 01:14:48,776 - central - INFO - Итоговые данные: {'company_name': 'ИП Курлов Александр Алексеевич', 'inn': '323508100624725', 'working_hours': 'Режим работы — согласно режиму работы Ozon'}
+2025-06-30 01:14:48,776 - central - INFO - Успешно получены данные продавца с попытки 1
+2025-06-30 01:14:48,776 - src.parser.inn_parser - INFO - Получены данные продавца: {'company_name': 'ИП Курлов Александр Алексеевич', 'inn': '323508100624725'}
+2025-06-30 01:14:48,776 - src.parser.inn_parser - INFO - ✓ ИНН найден: 323508100624725
+2025-06-30 01:14:48,777 - src.parser.inn_parser - INFO - ✓ Продавец 4 обработан. ИНН: 323508100624725
+2025-06-30 01:14:50,777 - src.parser.inn_parser - INFO - 
+============================================================
+2025-06-30 01:14:50,777 - src.parser.inn_parser - INFO - Парсинг продавца 5/5: https://www.ozon.ru/seller/treidcomputers-2620543/?miniapp=seller_2620543
+2025-06-30 01:14:50,777 - src.parser.inn_parser - INFO - ============================================================
+2025-06-30 01:14:50,777 - src.parser.inn_parser - INFO - Открываем страницу продавца: https://www.ozon.ru/seller/treidcomputers-2620543/?miniapp=seller_2620543
+2025-06-30 01:15:21,284 - src.parser.inn_parser - INFO - Найдено 12 уникальных ссылок на товары
+2025-06-30 01:15:21,284 - src.parser.inn_parser - INFO - Найдено 12 товаров продавца
+2025-06-30 01:15:21,284 - src.parser.inn_parser - INFO - Попытка 1/10: переходим к товару https://www.ozon.ru/product/treidcomputers-noutbuk-14-intel-celeron-n4000-ram-6-gb-intel-hd-graphics-windows-pro-serebristyy-1940505609/
+2025-06-30 01:15:29,489 - central - INFO - Попытка 1 из 10 получить данные продавца
+2025-06-30 01:15:29,502 - central - INFO - Парсим страницу: https://www.ozon.ru/product/treidcomputers-noutbuk-14-intel-celeron-n4000-ram-6-gb-intel-hd-graphics-windows-pro-serebristyy-1940505609/
+2025-06-30 01:15:31,623 - central - INFO - Найдено 1 кнопок по селектору: div.ea20-a.k9j_27.n7j_27 button.ga20-a
+2025-06-30 01:15:31,919 - central - INFO - Найдена кнопка информации #0 с селектором: div.ea20-a.k9j_27.n7j_27 button.ga20-a
+2025-06-30 01:15:33,435 - central - INFO - Количество vue-portal-target до клика: 1
+2025-06-30 01:15:34,379 - central - INFO - Клик по кнопке информации выполнен, ожидаем появления тултипа...
+2025-06-30 01:15:34,538 - central - INFO - Найден новый тултип:
+2025-06-30 01:15:34,538 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5 ea20-b3" data-popper-placement="top" style="z-index: 500; min-width: 264px; max-width: 264px; position: absolute; left: 381px; top: 1412px; margin: 0px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p cl...
+2025-06-30 01:15:34,539 - central - INFO - Текст: ИП Буторин Илья Сергеевич
+319774600299562
+Режим работы — согласно режиму работы Ozon
+2025-06-30 01:15:34,540 - central - INFO - Тултип содержит данные продавца
+2025-06-30 01:15:34,629 - central - INFO - Парсим текст: ИП Буторин Илья Сергеевич
+319774600299562
+Режим работы — согласно режиму работы Ozon
+2025-06-30 01:15:34,630 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5 ea20-b3" data-popper-placement="top" style="z-index: 500; min-width: 264px; max-width: 264px; position: absolute; left: 381px; top: 1412px; margin: 0px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Буторин Илья Сергеевич</p><p class="jn8_27">319774600299562</p><p class="jn8_27">Режим работы — согласно режиму работы Ozon</p> <!----></div> <div class="ea20-a9" style="position: abso...
+2025-06-30 01:15:34,638 - central - INFO - Найдено 3 строк для обработки
+2025-06-30 01:15:34,638 - central - INFO - Обрабатываем строку 1: 'ИП Буторин Илья Сергеевич'
+2025-06-30 01:15:34,639 - central - INFO - ✓ Название компании: ИП Буторин Илья Сергеевич
+2025-06-30 01:15:34,646 - central - INFO - Обрабатываем строку 2: '319774600299562'
+2025-06-30 01:15:34,646 - central - INFO - ✓ ИНН/ОГРН: 319774600299562
+2025-06-30 01:15:34,672 - central - INFO - Обрабатываем строку 3: 'Режим работы — согласно режиму работы Ozon'
+2025-06-30 01:15:34,674 - central - INFO - ✓ Режим работы: Режим работы — согласно режиму работы Ozon
+2025-06-30 01:15:34,674 - central - INFO - Итоговые данные: {'company_name': 'ИП Буторин Илья Сергеевич', 'inn': '319774600299562', 'working_hours': 'Режим работы — согласно режиму работы Ozon'}
+2025-06-30 01:15:34,675 - central - INFO - Успешно получены данные продавца с попытки 1
+2025-06-30 01:15:34,675 - src.parser.inn_parser - INFO - Получены данные продавца: {'company_name': 'ИП Буторин Илья Сергеевич', 'inn': '319774600299562'}
+2025-06-30 01:15:34,676 - src.parser.inn_parser - INFO - ✓ ИНН найден: 319774600299562
+2025-06-30 01:15:34,676 - src.parser.inn_parser - INFO - ✓ Продавец 5 обработан. ИНН: 319774600299562
+2025-06-30 01:15:36,676 - src.parser.inn_parser - INFO - 
+============================================================
+2025-06-30 01:15:36,676 - src.parser.inn_parser - INFO - Парсинг завершен! Обработано 5 продавцов
+2025-06-30 01:15:36,677 - src.parser.inn_parser - INFO - ============================================================
+2025-06-30 01:15:36,837 - excel_writer - INFO - Excel файл с данными продавцов сохранен: output\sellers_inn_20250630_011536_30.06.2025_01-15-36.xlsx
+2025-06-30 01:15:36,838 - src.parser.inn_parser - INFO - ✓ Результаты сохранены в файл: output\sellers_inn_20250630_011536_30.06.2025_01-15-36.xlsx
+2025-06-30 01:15:36,838 - src.parser.inn_parser - INFO - ✓ Всего записей: 5
+2025-06-30 01:15:36,839 - src.parser.inn_parser - INFO - ✓ ИНН найден у: 5 продавцов
+2025-06-30 01:15:39,275 - src.parser.ozon_parser - INFO - Драйвер успешно закрыт
+2025-06-30 01:15:42,450 - aiogram.event - INFO - Update id=570827619 is handled. Duration 201250 ms by bot id=7960498974
+2025-06-30 01:15:51,667 - bot.inn_handlers - INFO - Файл output\sellers_inn_20250630_011536_30.06.2025_01-15-36.xlsx удален
+2025-06-30 01:16:26,956 - aiogram.event - INFO - Update id=570827620 is handled. Duration 1704 ms by bot id=7960498974
+2025-06-30 01:16:37,076 - src.parser.product_inn_parser - INFO - Начинаем парсинг 3 товаров
+2025-06-30 01:16:37,076 - src.parser.product_inn_parser - INFO - 
+============================================================
+2025-06-30 01:16:37,076 - src.parser.product_inn_parser - INFO - Парсинг товара 1/3: https://www.ozon.ru/product/trade-electronics-sistemnyy-blok-intel-core-i7-7700-ram-32-gb-ssd-1000-gb-amd-radeon-rx-580-8-gb-2229460845/?_bctx=CAQQipkL&at=DqtD7nnjATLOApWqsK00kr8cMMx2DmF8Rw8D1SYq95Mg&hs=1
+2025-06-30 01:16:37,077 - src.parser.product_inn_parser - INFO - ============================================================
+2025-06-30 01:16:37,077 - src.parser.product_inn_parser - INFO - Открываем страницу товара...
+2025-06-30 01:17:15,819 - src.parser.product_inn_parser - INFO - Найден продавец: «TRADE Electronics»
+2025-06-30 01:17:15,819 - central - INFO - Попытка 1 из 10 получить данные продавца
+2025-06-30 01:17:15,831 - central - INFO - Парсим страницу: https://www.ozon.ru/product/trade-electronics-sistemnyy-blok-intel-core-i7-7700-ram-32-gb-ssd-1000-gb-amd-radeon-rx-580-8-gb-2229460845/?__rr=1&_bctx=CAQQipkL&abt_att=1&at=DqtD7nnjATLOApWqsK00kr8cMMx2DmF8Rw8D1SYq95Mg&hs=1
+2025-06-30 01:17:18,073 - central - INFO - Найдено 1 кнопок по селектору: div.ea20-a.k9j_27.n7j_27 button.ga20-a
+2025-06-30 01:17:18,284 - central - INFO - Найдена кнопка информации #0 с селектором: div.ea20-a.k9j_27.n7j_27 button.ga20-a
+2025-06-30 01:17:19,638 - central - INFO - Количество vue-portal-target до клика: 1
+2025-06-30 01:17:20,541 - central - INFO - Клик по кнопке информации выполнен, ожидаем появления тултипа...
+2025-06-30 01:17:20,589 - central - INFO - Найден новый тултип:
+2025-06-30 01:17:20,589 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Нашивочников Дмитрий Сергеевич</p><p class="jn8_27">320508100337274</p><p class...
+2025-06-30 01:17:20,590 - central - INFO - Текст: 
+2025-06-30 01:17:20,846 - central - INFO - Найден новый тултип:
+2025-06-30 01:17:20,847 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Нашивочников Дмитрий Сергеевич</p><p class="jn8_27">320508100337274</p><p class...
+2025-06-30 01:17:20,847 - central - INFO - Текст: 
+2025-06-30 01:17:21,219 - central - INFO - Найден новый тултип:
+2025-06-30 01:17:21,220 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5 ea20-b3" style="z-index: 500; min-width: 264px; max-width: 264px; position: absolute; left: 393px; top: 1820px; margin: 0px;" data-popper-placement="top"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p cl...
+2025-06-30 01:17:21,221 - central - INFO - Текст: ИП Нашивочников Дмитрий Сергеевич
+320508100337274
+Режим работы — согласно режиму работы Ozon
+2025-06-30 01:17:21,222 - central - INFO - Тултип содержит данные продавца
+2025-06-30 01:17:21,247 - central - INFO - Парсим текст: ИП Нашивочников Дмитрий Сергеевич
+320508100337274
+Режим работы — согласно режиму работы Ozon
+2025-06-30 01:17:21,249 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5 ea20-b3" style="z-index: 500; min-width: 264px; max-width: 264px; position: absolute; left: 393px; top: 1820px; margin: 0px;" data-popper-placement="top"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Нашивочников Дмитрий Сергеевич</p><p class="jn8_27">320508100337274</p><p class="jn8_27">Режим работы — согласно режиму работы Ozon</p> <!----></div> <div class="ea20-a9" style="positi...
+2025-06-30 01:17:21,249 - central - INFO - Найдено 3 строк для обработки
+2025-06-30 01:17:21,249 - central - INFO - Обрабатываем строку 1: 'ИП Нашивочников Дмитрий Сергеевич'
+2025-06-30 01:17:21,250 - central - INFO - ✓ Название компании: ИП Нашивочников Дмитрий Сергеевич
+2025-06-30 01:17:21,250 - central - INFO - Обрабатываем строку 2: '320508100337274'
+2025-06-30 01:17:21,250 - central - INFO - ✓ ИНН/ОГРН: 320508100337274
+2025-06-30 01:17:21,250 - central - INFO - Обрабатываем строку 3: 'Режим работы — согласно режиму работы Ozon'
+2025-06-30 01:17:21,251 - central - INFO - ✓ Режим работы: Режим работы — согласно режиму работы Ozon
+2025-06-30 01:17:21,251 - central - INFO - Итоговые данные: {'company_name': 'ИП Нашивочников Дмитрий Сергеевич', 'inn': '320508100337274', 'working_hours': 'Режим работы — согласно режиму работы Ozon'}
+2025-06-30 01:17:21,251 - central - INFO - Успешно получены данные продавца с попытки 1
+2025-06-30 01:17:21,251 - src.parser.product_inn_parser - INFO - Данные продавца получены: ИНН=320508100337274, Компания=ИП Нашивочников Дмитрий Сергеевич
+2025-06-30 01:17:21,251 - src.parser.product_inn_parser - INFO - ✓ Товар 1 обработан:
+2025-06-30 01:17:21,251 - src.parser.product_inn_parser - INFO -   Продавец: «TRADE Electronics»
+2025-06-30 01:17:21,252 - src.parser.product_inn_parser - INFO -   Компания: ИП Нашивочников Дмитрий Сергеевич
+2025-06-30 01:17:21,252 - src.parser.product_inn_parser - INFO -   ИНН: 320508100337274
+2025-06-30 01:17:23,253 - src.parser.product_inn_parser - INFO - 
+============================================================
+2025-06-30 01:17:23,254 - src.parser.product_inn_parser - INFO - Парсинг товара 2/3: https://www.ozon.ru/product/treidcomputers-noutbuk-14-intel-celeron-n4000-ram-6-gb-intel-hd-graphics-windows-pro-serebristyy-1940505609/?_bctx=CAQQ__ifAQ&at=36tWjGxyvIQLkwM2C1w63q0u1r6NREtkwy8zoHvymlJP&hs=1
+2025-06-30 01:17:23,254 - src.parser.product_inn_parser - INFO - ============================================================
+2025-06-30 01:17:23,254 - src.parser.product_inn_parser - INFO - Открываем страницу товара...
+2025-06-30 01:17:33,951 - src.parser.product_inn_parser - INFO - Найден продавец: TREIDCOMPUTERS
+2025-06-30 01:17:33,951 - central - INFO - Попытка 1 из 10 получить данные продавца
+2025-06-30 01:17:33,956 - central - INFO - Парсим страницу: https://www.ozon.ru/product/treidcomputers-noutbuk-14-intel-celeron-n4000-ram-6-gb-intel-hd-graphics-windows-pro-serebristyy-1940505609/?_bctx=CAQQ__ifAQ&at=36tWjGxyvIQLkwM2C1w63q0u1r6NREtkwy8zoHvymlJP&hs=1
+2025-06-30 01:17:37,079 - central - INFO - Найдено 1 кнопок по селектору: div.ea20-a.k9j_27.n7j_27 button.ga20-a
+2025-06-30 01:17:37,152 - central - INFO - Найдена кнопка информации #0 с селектором: div.ea20-a.k9j_27.n7j_27 button.ga20-a
+2025-06-30 01:17:38,497 - central - INFO - Количество vue-portal-target до клика: 1
+2025-06-30 01:17:39,401 - central - INFO - Клик по кнопке информации выполнен, ожидаем появления тултипа...
+2025-06-30 01:17:39,457 - central - INFO - Найден новый тултип:
+2025-06-30 01:17:39,458 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Буторин Илья Сергеевич</p><p class="jn8_27">319774600299562</p><p class="jn8_27...
+2025-06-30 01:17:39,462 - central - INFO - Текст: 
+2025-06-30 01:17:39,706 - central - INFO - Найден новый тултип:
+2025-06-30 01:17:39,707 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Буторин Илья Сергеевич</p><p class="jn8_27">319774600299562</p><p class="jn8_27...
+2025-06-30 01:17:39,707 - central - INFO - Текст: 
+2025-06-30 01:17:40,113 - central - INFO - Найден новый тултип:
+2025-06-30 01:17:40,113 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Буторин Илья Сергеевич</p><p class="jn8_27">319774600299562</p><p class="jn8_27...
+2025-06-30 01:17:40,114 - central - INFO - Текст: 
+2025-06-30 01:17:40,357 - central - INFO - Найден новый тултип:
+2025-06-30 01:17:40,358 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Буторин Илья Сергеевич</p><p class="jn8_27">319774600299562</p><p class="jn8_27...
+2025-06-30 01:17:40,360 - central - INFO - Текст: 
+2025-06-30 01:17:40,602 - central - INFO - Найден новый тултип:
+2025-06-30 01:17:40,602 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Буторин Илья Сергеевич</p><p class="jn8_27">319774600299562</p><p class="jn8_27...
+2025-06-30 01:17:40,602 - central - INFO - Текст: 
+2025-06-30 01:17:40,886 - central - INFO - Найден новый тултип:
+2025-06-30 01:17:40,886 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Буторин Илья Сергеевич</p><p class="jn8_27">319774600299562</p><p class="jn8_27...
+2025-06-30 01:17:40,887 - central - INFO - Текст: 
+2025-06-30 01:17:41,142 - central - INFO - Найден новый тултип:
+2025-06-30 01:17:41,145 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Буторин Илья Сергеевич</p><p class="jn8_27">319774600299562</p><p class="jn8_27...
+2025-06-30 01:17:41,146 - central - INFO - Текст: 
+2025-06-30 01:17:41,419 - central - INFO - Найден новый тултип:
+2025-06-30 01:17:41,420 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Буторин Илья Сергеевич</p><p class="jn8_27">319774600299562</p><p class="jn8_27...
+2025-06-30 01:17:41,420 - central - INFO - Текст: 
+2025-06-30 01:17:41,669 - central - INFO - Найден новый тултип:
+2025-06-30 01:17:41,670 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Буторин Илья Сергеевич</p><p class="jn8_27">319774600299562</p><p class="jn8_27...
+2025-06-30 01:17:41,670 - central - INFO - Текст: 
+2025-06-30 01:17:41,924 - central - INFO - Найден новый тултип:
+2025-06-30 01:17:41,925 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Буторин Илья Сергеевич</p><p class="jn8_27">319774600299562</p><p class="jn8_27...
+2025-06-30 01:17:41,928 - central - INFO - Текст: 
+2025-06-30 01:17:42,171 - central - INFO - Найден новый тултип:
+2025-06-30 01:17:42,171 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Буторин Илья Сергеевич</p><p class="jn8_27">319774600299562</p><p class="jn8_27...
+2025-06-30 01:17:42,171 - central - INFO - Текст: 
+2025-06-30 01:17:42,422 - central - INFO - Найден новый тултип:
+2025-06-30 01:17:42,423 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Буторин Илья Сергеевич</p><p class="jn8_27">319774600299562</p><p class="jn8_27...
+2025-06-30 01:17:42,424 - central - INFO - Текст: 
+2025-06-30 01:17:42,672 - central - INFO - Найден новый тултип:
+2025-06-30 01:17:42,672 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Буторин Илья Сергеевич</p><p class="jn8_27">319774600299562</p><p class="jn8_27...
+2025-06-30 01:17:42,673 - central - INFO - Текст: 
+2025-06-30 01:17:42,922 - central - INFO - Найден новый тултип:
+2025-06-30 01:17:42,923 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Буторин Илья Сергеевич</p><p class="jn8_27">319774600299562</p><p class="jn8_27...
+2025-06-30 01:17:42,923 - central - INFO - Текст: 
+2025-06-30 01:17:43,174 - central - INFO - Найден новый тултип:
+2025-06-30 01:17:43,175 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Буторин Илья Сергеевич</p><p class="jn8_27">319774600299562</p><p class="jn8_27...
+2025-06-30 01:17:43,177 - central - INFO - Текст: 
+2025-06-30 01:17:43,713 - central - INFO - Найден новый тултип:
+2025-06-30 01:17:43,713 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Буторин Илья Сергеевич</p><p class="jn8_27">319774600299562</p><p class="jn8_27...
+2025-06-30 01:17:43,714 - central - INFO - Текст: 
+2025-06-30 01:17:43,964 - central - INFO - Найден новый тултип:
+2025-06-30 01:17:43,965 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Буторин Илья Сергеевич</p><p class="jn8_27">319774600299562</p><p class="jn8_27...
+2025-06-30 01:17:43,966 - central - INFO - Текст: 
+2025-06-30 01:17:44,235 - central - INFO - Найден новый тултип:
+2025-06-30 01:17:44,235 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Буторин Илья Сергеевич</p><p class="jn8_27">319774600299562</p><p class="jn8_27...
+2025-06-30 01:17:44,236 - central - INFO - Текст: 
+2025-06-30 01:17:44,480 - central - INFO - Найден новый тултип:
+2025-06-30 01:17:44,480 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Буторин Илья Сергеевич</p><p class="jn8_27">319774600299562</p><p class="jn8_27...
+2025-06-30 01:17:44,480 - central - INFO - Текст: 
+2025-06-30 01:17:44,729 - central - INFO - Найден новый тултип:
+2025-06-30 01:17:44,730 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Буторин Илья Сергеевич</p><p class="jn8_27">319774600299562</p><p class="jn8_27...
+2025-06-30 01:17:44,730 - central - INFO - Текст: 
+2025-06-30 01:17:44,972 - central - INFO - Найден новый тултип:
+2025-06-30 01:17:44,973 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Буторин Илья Сергеевич</p><p class="jn8_27">319774600299562</p><p class="jn8_27...
+2025-06-30 01:17:44,973 - central - INFO - Текст: 
+2025-06-30 01:17:45,429 - central - INFO - Найден новый тултип:
+2025-06-30 01:17:45,430 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5 ea20-b3" style="z-index: 500; min-width: 264px; max-width: 264px; position: absolute; left: 381px; top: 1412px; margin: 0px;" data-popper-placement="top"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p cl...
+2025-06-30 01:17:45,431 - central - INFO - Текст: ИП Буторин Илья Сергеевич
+319774600299562
+Режим работы — согласно режиму работы Ozon
+2025-06-30 01:17:45,432 - central - INFO - Тултип содержит данные продавца
+2025-06-30 01:17:45,489 - central - INFO - Парсим текст: ИП Буторин Илья Сергеевич
+319774600299562
+Режим работы — согласно режиму работы Ozon
+2025-06-30 01:17:45,490 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5 ea20-b3" style="z-index: 500; min-width: 264px; max-width: 264px; position: absolute; left: 381px; top: 1412px; margin: 0px;" data-popper-placement="top"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Буторин Илья Сергеевич</p><p class="jn8_27">319774600299562</p><p class="jn8_27">Режим работы — согласно режиму работы Ozon</p> <!----></div> <div class="ea20-a9" style="position: abso...
+2025-06-30 01:17:45,490 - central - INFO - Найдено 3 строк для обработки
+2025-06-30 01:17:45,491 - central - INFO - Обрабатываем строку 1: 'ИП Буторин Илья Сергеевич'
+2025-06-30 01:17:45,493 - central - INFO - ✓ Название компании: ИП Буторин Илья Сергеевич
+2025-06-30 01:17:45,497 - central - INFO - Обрабатываем строку 2: '319774600299562'
+2025-06-30 01:17:45,498 - central - INFO - ✓ ИНН/ОГРН: 319774600299562
+2025-06-30 01:17:45,500 - central - INFO - Обрабатываем строку 3: 'Режим работы — согласно режиму работы Ozon'
+2025-06-30 01:17:45,501 - central - INFO - ✓ Режим работы: Режим работы — согласно режиму работы Ozon
+2025-06-30 01:17:45,501 - central - INFO - Итоговые данные: {'company_name': 'ИП Буторин Илья Сергеевич', 'inn': '319774600299562', 'working_hours': 'Режим работы — согласно режиму работы Ozon'}
+2025-06-30 01:17:45,504 - central - INFO - Успешно получены данные продавца с попытки 1
+2025-06-30 01:17:45,506 - src.parser.product_inn_parser - INFO - Данные продавца получены: ИНН=319774600299562, Компания=ИП Буторин Илья Сергеевич
+2025-06-30 01:17:45,506 - src.parser.product_inn_parser - INFO - ✓ Товар 2 обработан:
+2025-06-30 01:17:45,506 - src.parser.product_inn_parser - INFO -   Продавец: TREIDCOMPUTERS
+2025-06-30 01:17:45,506 - src.parser.product_inn_parser - INFO -   Компания: ИП Буторин Илья Сергеевич
+2025-06-30 01:17:45,507 - src.parser.product_inn_parser - INFO -   ИНН: 319774600299562
+2025-06-30 01:17:47,508 - src.parser.product_inn_parser - INFO - 
+============================================================
+2025-06-30 01:17:47,508 - src.parser.product_inn_parser - INFO - Парсинг товара 3/3: https://www.ozon.ru/product/mastero-sistemnyy-blok-gfx07-intel-core-i5-4570-ram-16-gb-ssd-512-gb-intel-hd-graphics-windows-1485205789/?_bctx=CAQQnZNw&at=DqtD7nMEZIqOVoQ2u1OQNPRHyNryymiwlW5v7hLQrRo0&hs=1
+2025-06-30 01:17:47,509 - src.parser.product_inn_parser - INFO - ============================================================
+2025-06-30 01:17:47,509 - src.parser.product_inn_parser - INFO - Открываем страницу товара...
+2025-06-30 01:18:03,869 - src.parser.product_inn_parser - INFO - Найден продавец: LogicPC
+2025-06-30 01:18:03,869 - central - INFO - Попытка 1 из 10 получить данные продавца
+2025-06-30 01:18:03,876 - central - INFO - Парсим страницу: https://www.ozon.ru/product/mastero-sistemnyy-blok-gfx07-intel-core-i5-4570-ram-16-gb-ssd-512-gb-intel-hd-graphics-windows-1485205789/?_bctx=CAQQnZNw&at=DqtD7nMEZIqOVoQ2u1OQNPRHyNryymiwlW5v7hLQrRo0&hs=1
+2025-06-30 01:18:06,057 - central - INFO - Найдено 1 кнопок по селектору: div.ea20-a.k9j_27.n7j_27 button.ga20-a
+2025-06-30 01:18:06,177 - central - INFO - Найдена кнопка информации #0 с селектором: div.ea20-a.k9j_27.n7j_27 button.ga20-a
+2025-06-30 01:18:07,541 - central - INFO - Количество vue-portal-target до клика: 1
+2025-06-30 01:18:08,617 - central - INFO - Клик по кнопке информации выполнен, ожидаем появления тултипа...
+2025-06-30 01:18:08,669 - central - INFO - Найден новый тултип:
+2025-06-30 01:18:08,670 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5 ea20-b3" data-popper-placement="top" style="z-index: 500; min-width: 264px; max-width: 264px; position: absolute; left: 297px; top: 1410px; margin: 0px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p cl...
+2025-06-30 01:18:08,670 - central - INFO - Текст: ООО "ЛОГИКА"
+630007, Россия, Новосибирская Область, г Новосибирск, ул Коммунистическая, д 2
+1112224007147
+Режим работы — согласно режиму работы Ozon
+2025-06-30 01:18:08,670 - central - INFO - Тултип содержит данные продавца
+2025-06-30 01:18:08,696 - central - INFO - Парсим текст: ООО "ЛОГИКА"
+630007, Россия, Новосибирская Область, г Новосибирск, ул Коммунистическая, д 2
+1112224007147
+Режим работы — согласно режиму работы Ozon
+2025-06-30 01:18:08,696 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5 ea20-b3" data-popper-placement="top" style="z-index: 500; min-width: 264px; max-width: 264px; position: absolute; left: 297px; top: 1410px; margin: 0px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ООО "ЛОГИКА"</p><p class="jn8_27">630007, Россия, Новосибирская Область, г Новосибирск, ул Коммунистическая, д 2</p><p class="jn8_27">1112224007147</p><p class="jn8_27">Режим работы — сог...
+2025-06-30 01:18:08,698 - central - INFO - Найдено 4 строк для обработки
+2025-06-30 01:18:08,698 - central - INFO - Обрабатываем строку 1: 'ООО "ЛОГИКА"'
+2025-06-30 01:18:08,698 - central - INFO - ✓ Название компании: ООО "ЛОГИКА"
+2025-06-30 01:18:08,699 - central - INFO - Обрабатываем строку 2: '630007, Россия, Новосибирская Область, г Новосибирск, ул Коммунистическая, д 2'
+2025-06-30 01:18:08,699 - central - INFO - • Прочая информация: 630007, Россия, Новосибирская Область, г Новосибирск, ул Коммунистическая, д 2
+2025-06-30 01:18:08,699 - central - INFO - Обрабатываем строку 3: '1112224007147'
+2025-06-30 01:18:08,699 - central - INFO - ✓ ИНН/ОГРН: 1112224007147
+2025-06-30 01:18:08,699 - central - INFO - Обрабатываем строку 4: 'Режим работы — согласно режиму работы Ozon'
+2025-06-30 01:18:08,699 - central - INFO - ✓ Режим работы: Режим работы — согласно режиму работы Ozon
+2025-06-30 01:18:08,700 - central - INFO - Итоговые данные: {'company_name': 'ООО "ЛОГИКА"', 'other_info': ['630007, Россия, Новосибирская Область, г Новосибирск, ул Коммунистическая, д 2'], 'inn': '1112224007147', 'working_hours': 'Режим работы — согласно режиму работы Ozon'}
+2025-06-30 01:18:08,700 - central - INFO - Успешно получены данные продавца с попытки 1
+2025-06-30 01:18:08,700 - src.parser.product_inn_parser - INFO - Данные продавца получены: ИНН=1112224007147, Компания=ООО "ЛОГИКА"
+2025-06-30 01:18:08,700 - src.parser.product_inn_parser - INFO - ✓ Товар 3 обработан:
+2025-06-30 01:18:08,700 - src.parser.product_inn_parser - INFO -   Продавец: LogicPC
+2025-06-30 01:18:08,700 - src.parser.product_inn_parser - INFO -   Компания: ООО "ЛОГИКА"
+2025-06-30 01:18:08,700 - src.parser.product_inn_parser - INFO -   ИНН: 1112224007147
+2025-06-30 01:18:10,702 - src.parser.product_inn_parser - INFO - 
+============================================================
+2025-06-30 01:18:10,703 - src.parser.product_inn_parser - INFO - Парсинг завершен! Обработано 3 товаров
+2025-06-30 01:18:10,703 - src.parser.product_inn_parser - INFO - ============================================================
+2025-06-30 01:18:10,740 - excel_writer - INFO - Файл продавцов сохранен: output\sellers_from_products_30.06.2025_01-18-10.xlsx
+2025-06-30 01:18:10,741 - src.parser.product_inn_parser - INFO - ✓ Результаты сохранены: output\sellers_from_products_30.06.2025_01-18-10.xlsx
+2025-06-30 01:18:13,199 - src.parser.ozon_parser - INFO - Драйвер успешно закрыт
+2025-06-30 01:18:17,780 - aiogram.event - INFO - Update id=570827621 is handled. Duration 103515 ms by bot id=7960498974
+2025-06-30 01:18:26,829 - bot.inn_handlers - INFO - Файл output\sellers_from_products_30.06.2025_01-18-10.xlsx удален
+2025-06-30 01:19:01,079 - aiogram.event - INFO - Update id=570827622 is handled. Duration 1454 ms by bot id=7960498974
+2025-06-30 01:19:07,319 - src.parser.ozon_parser - INFO - Открываем URL продавца: https://www.ozon.ru/seller/trade-electronics-183434/
+2025-06-30 01:19:36,343 - src.parser.modal_parser - INFO - Попытка 1 из 3 открыть модальное окно
+2025-06-30 01:19:36,438 - src.parser.modal_parser - INFO - Клик по кнопке 'Магазин' выполнен с помощью JavaScript
+2025-06-30 01:19:37,467 - src.parser.modal_parser - INFO - Модальное окно успешно открыто
+2025-06-30 01:19:42,860 - src.parser.ozon_parser - INFO - Переходим на первый товар: https://www.ozon.ru/product/trade-electronics-sistemnyy-blok-intel-core-i7-7700-ram-32-gb-ssd-1024-gb-amd-radeon-rx-580-8-gb-2009635132/?miniapp=seller_183434
+2025-06-30 01:20:19,201 - central - INFO - Попытка 1 из 10 получить данные продавца
+2025-06-30 01:20:19,214 - central - INFO - Парсим страницу: https://www.ozon.ru/product/trade-electronics-sistemnyy-blok-intel-core-i7-7700-ram-32-gb-ssd-1024-gb-amd-radeon-rx-580-8-gb-2009635132/?miniapp=seller_183434
+2025-06-30 01:20:21,633 - central - INFO - Найдено 1 кнопок по селектору: div.ea20-a.k9j_27.n7j_27 button.ga20-a
+2025-06-30 01:20:21,781 - central - INFO - Найдена кнопка информации #0 с селектором: div.ea20-a.k9j_27.n7j_27 button.ga20-a
+2025-06-30 01:20:23,530 - central - INFO - Количество vue-portal-target до клика: 1
+2025-06-30 01:20:24,500 - central - INFO - Клик по кнопке информации выполнен, ожидаем появления тултипа...
+2025-06-30 01:20:24,650 - central - INFO - Найден новый тултип:
+2025-06-30 01:20:24,656 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Нашивочников Дмитрий Сергеевич</p><p class="jn8_27">320508100337274</p><p class...
+2025-06-30 01:20:24,658 - central - INFO - Текст: 
+2025-06-30 01:20:24,963 - central - INFO - Найден новый тултип:
+2025-06-30 01:20:24,975 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Нашивочников Дмитрий Сергеевич</p><p class="jn8_27">320508100337274</p><p class...
+2025-06-30 01:20:24,976 - central - INFO - Текст: 
+2025-06-30 01:20:25,317 - central - INFO - Найден новый тултип:
+2025-06-30 01:20:25,319 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Нашивочников Дмитрий Сергеевич</p><p class="jn8_27">320508100337274</p><p class...
+2025-06-30 01:20:25,323 - central - INFO - Текст: 
+2025-06-30 01:20:25,586 - central - INFO - Найден новый тултип:
+2025-06-30 01:20:25,589 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Нашивочников Дмитрий Сергеевич</p><p class="jn8_27">320508100337274</p><p class...
+2025-06-30 01:20:25,590 - central - INFO - Текст: 
+2025-06-30 01:20:25,853 - central - INFO - Найден новый тултип:
+2025-06-30 01:20:25,854 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Нашивочников Дмитрий Сергеевич</p><p class="jn8_27">320508100337274</p><p class...
+2025-06-30 01:20:25,855 - central - INFO - Текст: 
+2025-06-30 01:20:26,191 - central - INFO - Найден новый тултип:
+2025-06-30 01:20:26,192 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Нашивочников Дмитрий Сергеевич</p><p class="jn8_27">320508100337274</p><p class...
+2025-06-30 01:20:26,192 - central - INFO - Текст: 
+2025-06-30 01:20:26,640 - central - INFO - Найден новый тултип:
+2025-06-30 01:20:26,643 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Нашивочников Дмитрий Сергеевич</p><p class="jn8_27">320508100337274</p><p class...
+2025-06-30 01:20:26,644 - central - INFO - Текст: 
+2025-06-30 01:20:26,916 - central - INFO - Найден новый тултип:
+2025-06-30 01:20:26,916 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Нашивочников Дмитрий Сергеевич</p><p class="jn8_27">320508100337274</p><p class...
+2025-06-30 01:20:26,927 - central - INFO - Текст: 
+2025-06-30 01:20:27,282 - central - INFO - Найден новый тултип:
+2025-06-30 01:20:27,282 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5" style="z-index: 500; min-width: 264px; max-width: 264px;"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Нашивочников Дмитрий Сергеевич</p><p class="jn8_27">320508100337274</p><p class...
+2025-06-30 01:20:27,284 - central - INFO - Текст: 
+2025-06-30 01:20:27,816 - central - INFO - Найден новый тултип:
+2025-06-30 01:20:27,819 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5 ea20-b3" style="z-index: 500; min-width: 264px; max-width: 264px; position: absolute; left: 393px; top: 2048px; margin: 0px;" data-popper-placement="top"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p cl...
+2025-06-30 01:20:27,823 - central - INFO - Текст: ИП Нашивочников Дмитрий Сергеевич
+320508100337274
+Режим работы — согласно режиму работы Ozon
+2025-06-30 01:20:27,825 - central - INFO - Тултип содержит данные продавца
+2025-06-30 01:20:27,941 - central - INFO - Парсим текст: ИП Нашивочников Дмитрий Сергеевич
+320508100337274
+Режим работы — согласно режиму работы Ozon
+2025-06-30 01:20:27,944 - central - INFO - HTML: <div class="vue-portal-target"><div class="ea20-a1 ea20-a5 ea20-b3" style="z-index: 500; min-width: 264px; max-width: 264px; position: absolute; left: 393px; top: 2048px; margin: 0px;" data-popper-placement="top"><div class="ea20-a2 ea20-b2" style="margin-left: 4px; margin-right: 4px;"><!----> <p class="jn8_27">ИП Нашивочников Дмитрий Сергеевич</p><p class="jn8_27">320508100337274</p><p class="jn8_27">Режим работы — согласно режиму работы Ozon</p> <!----></div> <div class="ea20-a9" style="positi...
+2025-06-30 01:20:27,945 - central - INFO - Найдено 3 строк для обработки
+2025-06-30 01:20:27,946 - central - INFO - Обрабатываем строку 1: 'ИП Нашивочников Дмитрий Сергеевич'
+2025-06-30 01:20:27,946 - central - INFO - ✓ Название компании: ИП Нашивочников Дмитрий Сергеевич
+2025-06-30 01:20:27,946 - central - INFO - Обрабатываем строку 2: '320508100337274'
+2025-06-30 01:20:27,946 - central - INFO - ✓ ИНН/ОГРН: 320508100337274
+2025-06-30 01:20:27,949 - central - INFO - Обрабатываем строку 3: 'Режим работы — согласно режиму работы Ozon'
+2025-06-30 01:20:27,949 - central - INFO - ✓ Режим работы: Режим работы — согласно режиму работы Ozon
+2025-06-30 01:20:27,952 - central - INFO - Итоговые данные: {'company_name': 'ИП Нашивочников Дмитрий Сергеевич', 'inn': '320508100337274', 'working_hours': 'Режим работы — согласно режиму работы Ozon'}
+2025-06-30 01:20:27,958 - central - INFO - Успешно получены данные продавца с попытки 1
+2025-06-30 01:20:30,500 - product_parser - INFO - Начинаем парсинг товаров с URL: https://www.ozon.ru/seller/trade-electronics-183434/
+2025-06-30 01:20:30,501 - product_parser - INFO - Используем системный ChromeDriver
+2025-06-30 01:20:32,889 - product_parser - INFO - Браузер инициализирован с stealth режимом для парсинга товаров
+2025-06-30 01:20:32,890 - product_parser - INFO - Загрузка страницы продавца: https://www.ozon.ru/seller/trade-electronics-183434/
+2025-06-30 01:21:12,496 - product_parser - INFO - Страница продавца загружена, товары найдены
+2025-06-30 01:21:12,597 - product_parser - INFO - Парсим товары магазина: Trade Electronics 183434
+2025-06-30 01:21:15,367 - product_parser - INFO - Спарсили 17/20 товаров
+2025-06-30 01:21:15,368 - product_parser - INFO - Скролим вниз, ждем появление новых товаров...
+2025-06-30 01:21:16,261 - product_parser - INFO - Скролл вниз выполнен, ожидаем появление новых товаров...
+2025-06-30 01:21:28,596 - product_parser - INFO - Новые товары появились! Спарсили 37/20 товаров
+2025-06-30 01:21:28,596 - product_parser - INFO - Парсинг завершен. Итого товаров: 37
+2025-06-30 01:21:28,755 - excel_writer - INFO - Excel файл сохранен: output\Trade Electronics 183434_30.06.2025_01-21-28.xlsx
+2025-06-30 01:21:28,755 - product_parser - INFO - Данные сохранены в файл: output\Trade Electronics 183434_30.06.2025_01-21-28.xlsx
+2025-06-30 01:21:31,269 - product_parser - INFO - Браузер закрыт
+2025-06-30 01:21:31,273 - parse_seller_and_products - INFO - Информация о продавце: ✓ Информация о продавце:
+Название магазина: Trade Electronics 183434
+Название компании: ИП Нашивочников Дмитрий Сергеевич
+ИНН: 320508100337274
+Premium: Да
+Заказов: 1242
+Работает с: 3 года
+
+2025-06-30 01:21:36,467 - aiogram.event - INFO - Update id=570827623 is handled. Duration 152187 ms by bot id=7960498974
+2025-06-30 01:21:45,609 - bot.seller_handlers - INFO - Файл output\Trade Electronics 183434_30.06.2025_01-21-28.xlsx удален

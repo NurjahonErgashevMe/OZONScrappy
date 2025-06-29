@@ -19,7 +19,7 @@ class OzonProductParser:
         self.headless = headless
         self.products = []
         self.unique_product_urls = set()
-        self.target_count = 20
+        self.target_count = 150
         self.max_retry_attempts = 3
         self.logger = logging.getLogger('product_parser')
         self.logger.setLevel(logging.INFO)
