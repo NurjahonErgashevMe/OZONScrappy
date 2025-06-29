@@ -1,0 +1,44 @@
+2025-06-29 21:05:26,820 - root - INFO - Конфигурация успешно загружена
+2025-06-29 21:05:26,841 - root - INFO - Приложение запущено
+2025-06-29 21:09:22,459 - root - INFO - Конфигурация успешно загружена
+2025-06-29 21:09:22,470 - root - INFO - Приложение запущено
+2025-06-29 21:09:50,432 - root - INFO - Конфигурация успешно сохранена
+2025-06-29 21:09:52,390 - root - INFO - Попытка запуска бота...
+2025-06-29 21:09:52,390 - utils - INFO - Загрузка конфигурации из C:\Users\nurja\OneDrive\Рабочий стол\ozon_seller_scrappy\config.txt
+2025-06-29 21:09:52,420 - utils - INFO - Загрузка конфигурации из C:\Users\nurja\OneDrive\Рабочий стол\ozon_seller_scrappy\config.txt
+2025-06-29 21:09:52,461 - bot.register_handlers - INFO - Все обработчики успешно зарегистрированы
+2025-06-29 21:09:52,461 - root - INFO - Telegram бот инициализирован
+2025-06-29 21:09:52,461 - aiogram.dispatcher - INFO - Start polling
+2025-06-29 21:09:53,095 - aiogram.dispatcher - INFO - Run polling for bot @ozonscrappybot id=7960498974 - 'OZON scrappy'
+2025-06-29 21:09:53,255 - aiogram.event - INFO - Update id=570827597 is not handled. Duration 0 ms by bot id=7960498974
+2025-06-29 21:09:53,876 - aiogram.event - INFO - Update id=570827598 is handled. Duration 625 ms by bot id=7960498974
+2025-06-29 21:09:54,419 - root - INFO - Бот успешно запущен и готов к работе
+2025-06-29 21:10:02,558 - aiogram.event - INFO - Update id=570827599 is handled. Duration 188 ms by bot id=7960498974
+2025-06-29 21:10:03,979 - aiogram.event - INFO - Update id=570827600 is handled. Duration 202 ms by bot id=7960498974
+2025-06-29 21:10:05,201 - aiogram.event - INFO - Update id=570827601 is handled. Duration 329 ms by bot id=7960498974
+2025-06-29 21:10:06,158 - aiogram.event - INFO - Update id=570827602 is handled. Duration 218 ms by bot id=7960498974
+2025-06-29 21:18:29,135 - root - INFO - Конфигурация успешно загружена
+2025-06-29 21:18:29,145 - root - INFO - Приложение запущено
+2025-06-29 21:18:32,518 - root - INFO - Конфигурация успешно сохранена
+2025-06-29 21:18:34,264 - root - INFO - Попытка запуска бота...
+2025-06-29 21:18:34,265 - utils - INFO - Загрузка конфигурации из C:\Users\nurja\OneDrive\Рабочий стол\ozon_seller_scrappy\config.txt
+2025-06-29 21:18:34,292 - utils - INFO - Загрузка конфигурации из C:\Users\nurja\OneDrive\Рабочий стол\ozon_seller_scrappy\config.txt
+2025-06-29 21:18:34,326 - bot.register_handlers - INFO - Все обработчики успешно зарегистрированы
+2025-06-29 21:18:34,326 - root - INFO - Telegram бот инициализирован
+2025-06-29 21:18:34,326 - aiogram.dispatcher - INFO - Start polling
+2025-06-29 21:18:35,065 - aiogram.dispatcher - INFO - Run polling for bot @ozonscrappybot id=7960498974 - 'OZON scrappy'
+2025-06-29 21:18:36,298 - root - INFO - Бот успешно запущен и готов к работе
+2025-06-29 21:18:38,436 - aiogram.event - INFO - Update id=570827606 is handled. Duration 672 ms by bot id=7960498974
+2025-06-29 21:18:44,073 - src.parser.inn_parser - INFO - Начинаем парсинг 5 продавцов
+2025-06-29 21:18:44,073 - src.parser.inn_parser - INFO - 
+============================================================
+2025-06-29 21:18:44,073 - src.parser.inn_parser - INFO - Парсинг продавца 1/5: https://www.ozon.ru/seller/trade-electronics-183434/?miniapp=seller_183434
+2025-06-29 21:18:44,073 - src.parser.inn_parser - INFO - ============================================================
+2025-06-29 21:18:44,073 - src.parser.inn_parser - INFO - Открываем страницу продавца: https://www.ozon.ru/seller/trade-electronics-183434/?miniapp=seller_183434
+2025-06-29 21:18:52,978 - src.parser.inn_parser - INFO - Найдено 10 уникальных ссылок на товары
+2025-06-29 21:18:52,978 - src.parser.inn_parser - INFO - Найдено 10 товаров продавца
+2025-06-29 21:18:52,978 - src.parser.inn_parser - INFO - Попытка 1/10: переходим к товару https://www.ozon.ru/product/trade-electronics-sistemnyy-blok-intel-core-i7-7700-ram-32-gb-ssd-1024-gb-amd-radeon-rx-580-8-gb-2009635132/
+2025-06-29 21:18:59,465 - central - INFO - Попытка 1 из 10 получить данные продавца
+2025-06-29 21:18:59,471 - central - INFO - Парсим страницу: https://www.ozon.ru/product/trade-electronics-sistemnyy-blok-intel-core-i7-7700-ram-32-gb-ssd-1024-gb-amd-radeon-rx-580-8-gb-2009635132/
+2025-06-29 21:19:04,695 - central - INFO - Найдено 1 кнопок по селектору: div.ea20-a.k9j_27.n7j_27 button.ga20-a
+2025-06-29 21:19:04,782 - central - INFO - Найдена кнопка информации #0 с селектором: div.ea20-a.k9j_27.n7j_27 button.ga20-a

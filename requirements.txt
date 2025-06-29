@@ -1,4 +1,6 @@
-undetected-chromedriver
-selenium
-webdriver-manager
-openpyxl
+selenium==4.33.0
+selenium-stealth==1.0.6
+openpyxl==openpyxl
+aiogram=3.0.0b7
+python-dotenv==1.1.1
+asyncio==3.4.3
