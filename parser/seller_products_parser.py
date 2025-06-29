@@ -14,13 +14,12 @@ from parser.product_extractor import ProductExtractor
 from .excel_writer import ExcelWriter
 
 class OzonProductParser:
-    def __init__(self, headless=False, driver_path=None):
+    def __init__(self, headless=False):
         self.driver = None
         self.headless = headless
-        self.driver_path = driver_path
         self.products = []
         self.unique_product_urls = set()
-        self.target_count = 150
+        self.target_count = 20
         self.max_retry_attempts = 3
         self.logger = logging.getLogger('product_parser')
         self.logger.setLevel(logging.INFO)
@@ -83,7 +82,7 @@ class OzonProductParser:
         
         try:
             # Поиск пути к драйверу
-            driver_path = self.driver_path or self._find_default_driver()
+            driver_path = self._find_default_driver()
             
             if driver_path:
                 self.logger.info(f"Используем драйвер по пути: {driver_path}")
@@ -314,7 +313,7 @@ class OzonProductParser:
             
             if filename:
                 self.logger.info(f"Данные сохранены в файл: {filename}")
-                return True
+                return True, filename
             else:
                 self.logger.error("Ошибка сохранения в Excel")
                 return False
@@ -337,6 +336,6 @@ class OzonProductParser:
         try:
             if hasattr(self, 'driver') and self.driver:
                 self.driver.quit()
-                logger.info("Драйвер product parser успешно закрыт")
+                logger.info("Драйвер  успешно закрыт")
         except Exception as e:
             logger.warning(f"Ошибка при закрытии драйвера: {str(e)}")

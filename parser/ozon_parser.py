@@ -16,15 +16,10 @@ import logging
 import os
 import time
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-)
-
 logger = logging.getLogger(__name__)
 
 class OzonSellerParser:
-    def __init__(self, headless=True, driver_path=None):
+    def __init__(self, headless=False, driver_path=None):
         """Инициализация парсера с stealth режимом"""
         self.options = Options()
         
@@ -33,7 +28,7 @@ class OzonSellerParser:
             self.options.add_argument("--headless")
             
         self.options.add_argument("--window-size=1920,1080")
-        # self.options.add_argument("--headless")
+        self.options.add_argument("--headless")
         self.options.add_argument("--start-maximized")
         self.options.add_argument("--no-sandbox")
         self.options.add_argument("--disable-dev-shm-usage")
@@ -108,14 +103,6 @@ class OzonSellerParser:
         }
         
         try:
-            # Проверяем, что URL является строкой
-            if not isinstance(url, str) or not url.strip():
-                logger.error(f"Некорректный URL: {url}")
-                result['status'] = "error"
-                result['seller'] = f"Некорректный URL: {url}"
-                return result
-            
-            logger.info(f"Парсинг страницы: {url}")
             driver.get(url)
             time.sleep(3)  # Дополнительная пауза для stealth
             
@@ -186,11 +173,6 @@ class OzonSellerParser:
     def parse_seller(self, url):
         """Парсинг информации о продавце с переходом на первый товар"""
         try:
-            # Проверяем, что URL является строкой
-            if not isinstance(url, str) or not url.strip():
-                logger.error(f"Некорректный URL продавца: {url}")
-                raise ValueError(f"URL должен быть непустой строкой, получен: {type(url)} - {url}")
-            
             logger.info(f"Открываем URL продавца: {url}")
             self.driver.get(url)
             time.sleep(5)  # Увеличенная пауза для stealth
@@ -205,7 +187,7 @@ class OzonSellerParser:
             
             # Переходим на первый товар для парсинга доп. информации
             first_product_link = self._get_first_product_link()
-            if first_product_link and isinstance(first_product_link, str) and first_product_link.strip():
+            if first_product_link:
                 logger.info(f"Переходим на первый товар: {first_product_link}")
                 self.driver.get(first_product_link)
                 time.sleep(4)
@@ -215,22 +197,16 @@ class OzonSellerParser:
                 
                 # Парсинг дополнительной информации о продавце
                 additional_details = self.seller_details_parser.parse_seller_details(self.driver)
-                if additional_details:
-                    seller_data.update(additional_details)
-            else:
-                logger.warning("Не удалось найти ссылку на первый товар или ссылка некорректна")
+                seller_data.update(additional_details)
             
             return seller_data
         except Exception as e:
             logger.error(f"Ошибка при парсинге: {str(e)}")
-            try:
-                self.driver.save_screenshot("error_screenshot.png")
-                logger.error("Скриншот ошибки сохранён как error_screenshot.png")
-            except:
-                logger.error("Не удалось сохранить скриншот")
+            self.driver.save_screenshot("error_screenshot.png")
+            logger.error("Скриншот ошибки сохранён как error_screenshot.png")
             raise
         finally:
-            self.close()
+            self.driver.quit()
 
     def _simulate_human_behavior(self):
         """Имитация человеческого поведения для обхода детекции"""
@@ -265,15 +241,8 @@ class OzonSellerParser:
             product_links = self.driver.find_elements(By.CSS_SELECTOR, 'a[href*="/product/"]')
             if product_links:
                 first_link = product_links[0].get_attribute('href')
-                # Проверяем, что ссылка является строкой
-                if isinstance(first_link, str) and first_link.strip():
-                    return first_link
-                else:
-                    logger.warning(f"Найденная ссылка не является строкой: {type(first_link)} - {first_link}")
-                    return None
-            else:
-                logger.warning("Не найдено ссылок на товары")
-                return None
+                return first_link
+            return None
         except Exception as e:
             logger.error(f"Ошибка при поиске ссылки на товар: {str(e)}")
             return None

@@ -4,11 +4,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
-from .data_validators import DataValidators
-import logging
+from bot.central_logger import central_logger as logger 
 import time
-
-logger = logging.getLogger(__name__)
 
 class SellerDetailsParser:
     def __init__(self):

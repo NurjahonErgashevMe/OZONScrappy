@@ -7,3 +7,9 @@ def main_keyboard():
         [KeyboardButton(text="📦 Парсинг ИНН из товаров")]
     ]
     return ReplyKeyboardMarkup(keyboard=buttons, resize_keyboard=True)
+
+def cancel_keyboard():
+    return ReplyKeyboardMarkup(
+        keyboard=[[KeyboardButton(text="❌ Отмена")]],
+        resize_keyboard=True
+    )

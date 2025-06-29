@@ -44,6 +44,63 @@ class INNParser:
         except Exception as e:
             logger.error(f"Ошибка при загрузке файла {file_path}: {str(e)}")
             return []
+        
+    def parse_url_list(self, urls):
+        """Парсинг списка URL продавцов"""
+        self.results = []  # очищаем предыдущие результаты
+        
+        if not urls:
+            logger.error("Нет ссылок для парсинга!")
+            return False
+        
+        logger.info(f"Начинаем парсинг {len(urls)} продавцов")
+        
+        for i, seller_url in enumerate(urls, 1):
+            logger.info(f"\n{'='*60}")
+            logger.info(f"Парсинг продавца {i}/{len(urls)}: {seller_url}")
+            logger.info(f"{'='*60}")
+            
+            try:
+                seller_data = self.parse_single_seller(seller_url)
+                
+                # Добавляем результат в список
+                result = {
+                    'seller_url': seller_url,
+                    'seller_name': seller_data.get('seller_name', 'Не найдено'),
+                    'company_name': seller_data.get('company_name', 'Не найдено'),
+                    'inn': seller_data.get('inn', 'Не найдено')
+                }
+                
+                self.results.append(result)
+                logger.info(f"✓ Продавец {i} обработан. ИНН: {result['inn']}")
+                
+                # Небольшая пауза между продавцами
+                time.sleep(2)
+                
+            except Exception as e:
+                logger.error(f"✗ Ошибка при парсинге продавца {i}: {str(e)}")
+                
+                # Добавляем результат с ошибкой
+                error_result = {
+                    'seller_url': seller_url,
+                    'seller_name': 'Ошибка',
+                    'company_name': 'Ошибка',
+                    'inn': 'Ошибка'
+                }
+                self.results.append(error_result)
+                
+                # Пытаемся восстановить драйвер при критической ошибке
+                try:
+                    self.driver.get("about:blank")
+                    time.sleep(1)
+                except:
+                    logger.warning("Проблемы с драйвером, продолжаем...")
+        
+        logger.info(f"\n{'='*60}")
+        logger.info(f"Парсинг завершен! Обработано {len(self.results)} продавцов")
+        logger.info(f"{'='*60}")
+        
+        return True
     
     def parse_all_sellers(self):
         """Парсинг всех продавцов из файла sellers.txt"""
@@ -279,7 +336,7 @@ class INNParser:
         try:
             if not self.results:
                 logger.warning("Нет данных для сохранения")
-                return False
+                return None
             
             # Преобразуем данные в формат для ExcelWriter
             products_data = []
@@ -307,14 +364,14 @@ class INNParser:
                 inn_found_count = len([r for r in self.results if r['inn'] not in ['Не найдено', 'Ошибка']])
                 logger.info(f"✓ ИНН найден у: {inn_found_count} продавцов")
                 
-                return True
+                return filepath
             else:
                 logger.error("Ошибка при сохранении файла")
-                return False
-            
+                return None
+                
         except Exception as e:
             logger.error(f"Ошибка при сохранении в Excel: {str(e)}")
-            return False
+            return None
     
     def close(self):
         """Закрытие парсера"""
