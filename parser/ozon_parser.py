@@ -43,15 +43,15 @@ class OzonSellerParser:
         self.options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
         
         # Поиск пути к драйверу
-        self.driver_path = driver_path or self._find_default_driver()
+        # self.driver_path = driver_path or self._find_default_driver()
         
         # Создание сервиса
-        if self.driver_path:
-            service = Service(self.driver_path)
-            self.driver = webdriver.Chrome(service=service, options=self.options)
-        else:
+        # if self.driver_path:
+        #     service = Service(self.driver_path)
+        #     self.driver = webdriver.Chrome(service=service, options=self.options)
+        # else:
             # Попытка использовать системный ChromeDriver
-            self.driver = webdriver.Chrome(options=self.options)
+        self.driver = webdriver.Chrome(options=self.options)
         
         # Применение stealth настроек
         selenium_stealth.stealth(

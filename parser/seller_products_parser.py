@@ -82,16 +82,16 @@ class OzonProductParser:
         
         try:
             # Поиск пути к драйверу
-            driver_path = self._find_default_driver()
+            # driver_path = self._find_default_driver()
             
-            if driver_path:
-                self.logger.info(f"Используем драйвер по пути: {driver_path}")
-                service = Service(driver_path)
-                self.driver = webdriver.Chrome(service=service, options=self.options)
-            else:
-                # Попытка использовать системный ChromeDriver
-                self.logger.info("Используем системный ChromeDriver")
-                self.driver = webdriver.Chrome(options=self.options)
+            # if driver_path:
+            #     self.logger.info(f"Используем драйвер по пути: {driver_path}")
+            #     service = Service(driver_path)
+            #     self.driver = webdriver.Chrome(service=service, options=self.options)
+            # else:
+            #     # Попытка использовать системный ChromeDriver
+            self.logger.info("Используем системный ChromeDriver")
+            self.driver = webdriver.Chrome(options=self.options)
             
             # Применение stealth настроек
             selenium_stealth.stealth(
