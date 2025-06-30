@@ -7,10 +7,12 @@ from src.bot.handlers.base import (
     start_command,
     parse_seller_products,
     parse_inn_command,
-    parse_products_inn_command
+    parse_products_inn_command,
+    parse_category_inn_command  # Новый импорт
 )
 from src.bot.handlers.seller_handling import handle_seller_url
 from src.bot.handlers.inn_handling import handle_inn_urls
+from src.bot.handlers.category_handling import handle_category_url  # Новый импорт
 from src.bot.states import ParserStates
 from src.utils import load_config
 
@@ -70,6 +72,11 @@ def register_handlers(dp: Dispatcher, bot: Bot):
         create_handler(parse_products_inn_command), 
         F.text == "📦 Парсинг ИНН из товаров"
     )
+    # Новый обработчик для парсинга категорий
+    dp.message.register(
+        create_handler(parse_category_inn_command), 
+        F.text == "🏷️ Парсинг ИНН по категориям"
+    )
 
     # Регистрация обработчиков состояний
     dp.message.register(
@@ -83,6 +90,11 @@ def register_handlers(dp: Dispatcher, bot: Bot):
     dp.message.register(
         create_handler(lambda m, s: handle_inn_urls(m, s, bot, mode='products')),
         ParserStates.waiting_product_urls_for_inn
+    )
+    # Новый обработчик состояния для категорий
+    dp.message.register(
+        create_handler(lambda m, s: handle_category_url(m, s, bot)),
+        ParserStates.waiting_category_url
     )
 
     logger.info("Все обработчики успешно зарегистрированы")
