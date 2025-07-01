@@ -1,3 +1,4 @@
+import os
 import tkinter as tk
 from tkinter import ttk, scrolledtext, messagebox
 import webbrowser
@@ -117,10 +118,42 @@ class TabManager:
         control_frame = ttk.Frame(notebook, padding="20")
         notebook.add(control_frame, text="Управление")
         
-        ttk.Label(control_frame, text="Управление Telegram ботом", 
+        # Создаем прокручиваемый фрейм
+        canvas = tk.Canvas(control_frame)
+        scrollbar = ttk.Scrollbar(control_frame, orient="vertical", command=canvas.yview)
+        scrollable_frame = ttk.Frame(canvas)
+        
+        scrollable_frame.bind(
+            "<Configure>",
+            lambda e: canvas.configure(scrollregion=canvas.bbox("all"))
+        )
+        
+        canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
+        canvas.configure(yscrollcommand=scrollbar.set)
+        
+        # Привязываем скроллинг к колесу мыши
+        def _on_mousewheel(event):
+            canvas.yview_scroll(int(-1*(event.delta/120)), "units")
+        canvas.bind_all("<MouseWheel>", _on_mousewheel)
+        
+        canvas.pack(side="left", fill="both", expand=True)
+        scrollbar.pack(side="right", fill="y")
+        
+        # Настраиваем ширину прокручиваемого контента
+        def configure_scroll_region(event):
+            canvas.configure(scrollregion=canvas.bbox("all"))
+            # Устанавливаем ширину прокручиваемого фрейма равной ширине canvas
+            canvas_width = event.width
+            canvas.itemconfig(canvas.create_window((0, 0), window=scrollable_frame, anchor="nw"), width=canvas_width)
+        
+        canvas.bind('<Configure>', configure_scroll_region)
+        
+        # Заголовок
+        ttk.Label(scrollable_frame, text="Управление Telegram ботом", 
                  font=('Arial', 16, 'bold')).pack(pady=(0, 30))
         
-        status_frame = ttk.LabelFrame(control_frame, text="Статус бота", padding="15")
+        # Секция статуса бота
+        status_frame = ttk.LabelFrame(scrollable_frame, text="Статус бота", padding="15")
         status_frame.pack(fill=tk.X, pady=(0, 20))
         
         self.bot_status_var = tk.StringVar()
@@ -128,7 +161,8 @@ class TabManager:
         ttk.Label(status_frame, textvariable=self.bot_status_var, 
                  font=('Arial', 14, 'bold')).pack()
         
-        control_buttons_frame = ttk.Frame(control_frame)
+        # Кнопки управления ботом
+        control_buttons_frame = ttk.Frame(scrollable_frame)
         control_buttons_frame.pack(pady=20)
         
         self.start_btn = ttk.Button(control_buttons_frame, text="▶️ Запустить бота", 
@@ -143,7 +177,104 @@ class TabManager:
                                      command=self.restart_bot, state=tk.DISABLED)
         self.restart_btn.pack(side=tk.LEFT)
         
-        config_info_frame = ttk.LabelFrame(control_frame, text="Информация о конфигурации", 
+        # Новая секция настроек парсера
+        parser_settings_frame = ttk.LabelFrame(scrollable_frame, text="⚙️ Настройки парсера категорий", 
+                                              padding="20")
+        parser_settings_frame.pack(fill=tk.X, pady=20)
+        
+        # Первая строка настроек
+        settings_row1 = ttk.Frame(parser_settings_frame)
+        settings_row1.pack(fill=tk.X, pady=(0, 15))
+        
+        # Общее количество ссылок
+        ttk.Label(settings_row1, text="Количество товаров:", 
+                 font=('Arial', 11)).pack(side=tk.LEFT)
+        self.total_links_var = tk.StringVar(value="150")
+        total_links_entry = ttk.Entry(settings_row1, textvariable=self.total_links_var, 
+                                     width=10, font=('Arial', 10))
+        total_links_entry.pack(side=tk.LEFT, padx=(10, 20))
+        
+        # Количество воркеров
+        ttk.Label(settings_row1, text="Воркеры:", 
+                 font=('Arial', 11)).pack(side=tk.LEFT)
+        self.workers_var = tk.StringVar(value="3")
+        workers_entry = ttk.Entry(settings_row1, textvariable=self.workers_var, 
+                                 width=10, font=('Arial', 10))
+        workers_entry.pack(side=tk.LEFT, padx=(10, 0))
+        
+        # Вторая строка настроек
+        settings_row2 = ttk.Frame(parser_settings_frame)
+        settings_row2.pack(fill=tk.X, pady=(0, 15))
+        
+        # Максимальное количество холостых скроллов
+        ttk.Label(settings_row2, text="Макс. холостых скроллов:", 
+                 font=('Arial', 11)).pack(side=tk.LEFT)
+        self.max_idle_scrolls_var = tk.StringVar(value="100")
+        idle_scrolls_entry = ttk.Entry(settings_row2, textvariable=self.max_idle_scrolls_var, 
+                                      width=10, font=('Arial', 10))
+        idle_scrolls_entry.pack(side=tk.LEFT, padx=(10, 20))
+        
+        # Задержка скролла
+        ttk.Label(settings_row2, text="Задержка скролла (сек):", 
+                 font=('Arial', 11)).pack(side=tk.LEFT)
+        self.scroll_delay_var = tk.StringVar(value="2.0")
+        scroll_delay_entry = ttk.Entry(settings_row2, textvariable=self.scroll_delay_var, 
+                                      width=10, font=('Arial', 10))
+        scroll_delay_entry.pack(side=tk.LEFT, padx=(10, 0))
+        
+        # Третья строка настроек
+        settings_row3 = ttk.Frame(parser_settings_frame)
+        settings_row3.pack(fill=tk.X, pady=(0, 15))
+        
+        # Таймаут загрузки
+        ttk.Label(settings_row3, text="Таймаут загрузки (сек):", 
+                 font=('Arial', 11)).pack(side=tk.LEFT)
+        self.load_timeout_var = tk.StringVar(value="30")
+        load_timeout_entry = ttk.Entry(settings_row3, textvariable=self.load_timeout_var, 
+                                      width=10, font=('Arial', 10))
+        load_timeout_entry.pack(side=tk.LEFT, padx=(10, 20))
+        
+        # Режим браузера (исправленная логика)
+        # ttk.Label(settings_row3, text="Скрытый режим браузера:", 
+        #          font=('Arial', 11)).pack(side=tk.LEFT)
+        # self.headless_var = tk.BooleanVar(value=False)  # False = показывать браузер
+        # headless_cb = ttk.Checkbutton(settings_row3, variable=self.headless_var)
+        # headless_cb.pack(side=tk.LEFT, padx=(10, 0))
+        
+        # Кнопки управления настройками парсера
+        parser_buttons_frame = ttk.Frame(parser_settings_frame)
+        parser_buttons_frame.pack(pady=(15, 0))
+        
+        save_parser_btn = ttk.Button(parser_buttons_frame, text="💾 Сохранить настройки", 
+                                    command=self.save_parser_settings)
+        save_parser_btn.pack(side=tk.LEFT, padx=(0, 10))
+        
+        load_parser_btn = ttk.Button(parser_buttons_frame, text="📁 Загрузить настройки", 
+                                    command=self.load_parser_settings)
+        load_parser_btn.pack(side=tk.LEFT, padx=(0, 10))
+        
+        reset_parser_btn = ttk.Button(parser_buttons_frame, text="🔄 Сбросить", 
+                                     command=self.reset_parser_settings)
+        reset_parser_btn.pack(side=tk.LEFT)
+        
+        # Справочная информация
+        parser_info_frame = ttk.LabelFrame(parser_settings_frame, text="📋 Описание настроек", 
+                                          padding="10")
+        parser_info_frame.pack(fill=tk.X, pady=(20, 0))
+        
+        info_text = """• Количество товаров - максимальное количество ссылок для сбора
+• Воркеры - количество параллельных потоков для парсинга ИНН (рекомендуется 3-5)
+• Макс. холостых скроллов - сколько скроллов без новых товаров перед остановкой
+• Задержка скролла - пауза между скроллами в секундах (для имитации человека)
+• Таймаут загрузки - время ожидания загрузки страницы в секундах
+• Скрытый режим браузера - если включен, браузер запускается скрыто (--headless)"""
+        
+        info_label = ttk.Label(parser_info_frame, text=info_text, justify=tk.LEFT, 
+                              font=('Arial', 9), wraplength=750)
+        info_label.pack(anchor=tk.W)
+        
+        # Информация о конфигурации
+        config_info_frame = ttk.LabelFrame(scrollable_frame, text="Информация о конфигурации", 
                                           padding="15")
         config_info_frame.pack(fill=tk.X, pady=20)
         
@@ -153,6 +284,9 @@ class TabManager:
                  font=('Arial', 10)).pack()
         
         self.update_config_info()
+        
+        # Загружаем настройки парсера при инициализации
+        self.load_parser_settings()
     
     def setup_developer_tab(self, notebook):
         """Настройка вкладки разработчика"""
@@ -190,16 +324,140 @@ class TabManager:
                  foreground="gray", borderwidth=2, relief="solid", 
                  width=15).pack()
     
+    def save_parser_settings(self):
+        """Сохранение настроек парсера в конфигурационный файл"""
+        try:
+            # Валидация значений
+            try:
+                total_links = int(self.total_links_var.get())
+                workers = int(self.workers_var.get())
+                max_idle_scrolls = int(self.max_idle_scrolls_var.get())
+                scroll_delay = float(self.scroll_delay_var.get())
+                load_timeout = int(self.load_timeout_var.get())
+                
+                if total_links <= 0 or workers <= 0 or max_idle_scrolls <= 0 or scroll_delay < 0 or load_timeout <= 0:
+                    raise ValueError("Значения должны быть положительными")
+                    
+            except ValueError as e:
+                messagebox.showerror("Ошибка", f"Некорректные значения настроек: {e}")
+                return
+            
+            # Читаем существующий конфиг
+            config_lines = []
+            config_file = "config.txt"
+            
+            if os.path.exists(config_file):
+                with open(config_file, "r", encoding="utf-8") as f:
+                    config_lines = f.readlines()
+            
+            # Обновляем или добавляем настройки парсера
+            parser_settings = {
+                "TOTAL_LINKS": str(total_links),
+                "WORKERS_COUNT": str(workers),
+                "MAX_IDLE_SCROLLS": str(max_idle_scrolls),
+                "SCROLL_DELAY": str(scroll_delay),
+                "LOAD_TIMEOUT": str(load_timeout),
+                "HEADLESS": "False" if self.headless_var.get() else "True"
+            }
+            
+            # Обновляем существующие настройки или добавляем новые
+            updated_lines = []
+            updated_keys = set()
+            
+            for line in config_lines:
+                line = line.strip()
+                if '=' in line and not line.startswith('#'):
+                    key = line.split('=')[0].strip()
+                    if key in parser_settings:
+                        updated_lines.append(f"{key}={parser_settings[key]}\n")
+                        updated_keys.add(key)
+                    else:
+                        updated_lines.append(line + "\n")
+                else:
+                    updated_lines.append(line + "\n")
+            
+            # Добавляем новые настройки, которых не было в файле
+            if not updated_keys:  # Если секции парсера не было
+                updated_lines.append("\n# Настройки парсера категорий\n")
+            
+            for key, value in parser_settings.items():
+                if key not in updated_keys:
+                    updated_lines.append(f"{key}={value}\n")
+            
+            # Сохраняем конфиг
+            with open(config_file, "w", encoding="utf-8") as f:
+                f.writelines(updated_lines)
+            
+            messagebox.showinfo("Успех", "Настройки парсера сохранены!")
+            self.status_var.set("Настройки парсера сохранены")
+            if hasattr(self, 'logger'):
+                self.logger.info("Настройки парсера сохранены в config.txt")
+                
+        except Exception as e:
+            messagebox.showerror("Ошибка", f"Не удалось сохранить настройки: {e}")
+            if hasattr(self, 'logger'):
+                self.logger.error(f"Ошибка сохранения настроек парсера: {e}")
+    
+    def load_parser_settings(self):
+        """Загрузка настроек парсера из конфигурационного файла"""
+        try:
+            config_file = "config.txt"
+            if not os.path.exists(config_file):
+                return
+            
+            with open(config_file, "r", encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if '=' in line and not line.startswith('#'):
+                        key, value = line.split('=', 1)
+                        key = key.strip()
+                        value = value.strip()
+                        
+                        if key == "TOTAL_LINKS":
+                            self.total_links_var.set(value)
+                        elif key == "WORKERS_COUNT":
+                            self.workers_var.set(value)
+                        elif key == "MAX_IDLE_SCROLLS":
+                            self.max_idle_scrolls_var.set(value)
+                        elif key == "SCROLL_DELAY":
+                            self.scroll_delay_var.set(value)
+                        elif key == "LOAD_TIMEOUT":
+                            self.load_timeout_var.set(value)
+                        elif key == "HEADLESS":
+                            self.headless_var.set(value.lower() == "false")
+            
+            if hasattr(self, 'logger'):
+                self.logger.info("Настройки парсера загружены из config.txt")
+                
+        except Exception as e:
+            if hasattr(self, 'logger'):
+                self.logger.warning(f"Не удалось загрузить настройки парсера: {e}")
+    
+    def reset_parser_settings(self):
+        """Сброс настроек парсера к значениям по умолчанию"""
+        self.total_links_var.set("150")
+        self.workers_var.set("3")
+        self.max_idle_scrolls_var.set("100")
+        self.scroll_delay_var.set("2.0")
+        self.load_timeout_var.set("30")
+        self.headless_var.set(False)
+        
+        self.status_var.set("Настройки парсера сброшены к значениям по умолчанию")
+        if hasattr(self, 'logger'):
+            self.logger.info("Настройки парсера сброшены к значениям по умолчанию")
+    
     def clear_fields(self):
         self.token_entry.delete(0, tk.END)
         self.chat_id_entry.delete(0, tk.END)
         self.status_var.set("Поля очищены")
         self.update_config_info()
-        self.logger.info("Поля конфигурации очищены")
+        if hasattr(self, 'logger'):
+            self.logger.info("Поля конфигурации очищены")
     
     def save_logs(self):
         try:
             logs_content = self.log_text.get(1.0, tk.END)
+            from datetime import datetime
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             filename = f"logs_{timestamp}.txt"
             
@@ -207,10 +465,13 @@ class TabManager:
                 f.write(logs_content)
             
             messagebox.showinfo("Успех", f"Логи сохранены в файл: {filename}")
-            self.logger.info(f"Логи сохранены в файл: {filename}")
+            if hasattr(self, 'logger'):
+                self.logger.info(f"Логи сохранены в файл: {filename}")
         except Exception as e:
             messagebox.showerror("Ошибка", f"Не удалось сохранить логи: {e}")
-            self.logger.error(f"Ошибка сохранения логов: {e}")
+            if hasattr(self, 'logger'):
+                self.logger.error(f"Ошибка сохранения логов: {e}")
     
     def refresh_logs(self):
-        self.logger.info("Обновление логов...")
+        if hasattr(self, 'logger'):
+            self.logger.info("Обновление логов...")
