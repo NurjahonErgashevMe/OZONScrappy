@@ -11,14 +11,46 @@ class SellerInfoParser:
         self.logger = logging.getLogger('seller_info_parser')
         self.max_attempts = 5
         self.visited_products = set()
+        
+        
+    def get_seller_name(self, driver):
+        """Получение названия продавца со страницы магазина"""
+        try:
+            # Различные селекторы для названия продавца
+            name_selectors = [
+                'h1[data-widget="webShopTitle"]',
+                '.shop-header h1',
+                '[data-widget="webShopTitle"] h1',
+                '.seller-name',
+                'h1'
+            ]
+           
+            for selector in name_selectors:
+                try:
+                    element = driver.find_element(By.CSS_SELECTOR, selector)
+                    if element and element.text.strip():
+                        return element.text.strip()
+                except NoSuchElementException:
+                    continue
+           
+            # Попытка получить из заголовка страницы
+            title = driver.title
+            if title and '|' in title:
+                return title.split('|')[0].strip()
+           
+            return 'Не найдено'
+           
+        except Exception as e:
+            self.logger.warning(f"Ошибка при получении названия продавца: {str(e)}")
+            return 'Не найдено'
 
     def get_seller_details(self, driver, seller_url=None):
         """Получение детальной информации о продавце с повторными попытками"""
         seller_details = {'company_name': 'Не найдено', 'inn': 'Не найдено'}
-        
+       
         for attempt in range(self.max_attempts):
             self.logger.info(f"=== ПОПЫТКА {attempt + 1} из {self.max_attempts} получить данные продавца ===")
-            
+           
             try:
                 # Если это не первая попытка - обновляем страницу
                 if attempt > 0:
@@ -26,32 +58,32 @@ class SellerInfoParser:
                     driver.refresh()
                     time.sleep(3)  # Ждем загрузки страницы
                     self.logger.info("Страница обновлена, ждем загрузки контента...")
-                
+               
                 # Активируем контент скроллом
                 self.logger.info("Прокручиваем страницу для активации контента...")
                 driver.execute_script("window.scrollTo(0, 600);")
                 time.sleep(1)
-                
+               
                 # Ищем секцию с продавцом
                 self.logger.info("Ищем секцию с информацией о продавце...")
                 seller_section = WebDriverWait(driver, 15).until(
                     EC.presence_of_element_located((By.CSS_SELECTOR, 'div[data-widget="webCurrentSeller"]'))
                 )
                 self.logger.info("✓ Секция продавца найдена!")
-                
+               
                 # Дополнительный скролл к секции
                 self.logger.info("Прокручиваем к секции продавца...")
                 driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", seller_section)
                 time.sleep(1.5)
-                
+               
                 # Ищем кнопку с информацией
                 self.logger.info("Ищем кнопку с информацией о продавце...")
                 info_button = self._find_info_button(seller_section)
-                
+               
                 if info_button:
                     self.logger.info("✓ Кнопка информации найдена!")
                     tooltip_data = self._get_tooltip_data(driver, info_button, attempt + 1)
-                    
+                   
                     if tooltip_data and (tooltip_data.get('company_name') != 'Не найдено' or tooltip_data.get('inn') != 'Не найдено'):
                         self.logger.info(f"✓ Успешно получены данные продавца: {tooltip_data}")
                         seller_details.update(tooltip_data)
@@ -60,24 +92,25 @@ class SellerInfoParser:
                         self.logger.warning("Данные из тултипа не получены или пустые")
                 else:
                     self.logger.warning("✗ Кнопка информации не найдена")
-                
+               
                 # Если не получилось и есть еще попытки
                 if attempt < self.max_attempts - 1:
                     self.logger.info(f"Попытка {attempt + 1} неуспешна, готовимся к следующей...")
                     time.sleep(2)
-                    
+                   
             except Exception as e:
                 self.logger.error(f"✗ Ошибка в попытке {attempt + 1}: {str(e)}")
                 if attempt < self.max_attempts - 1:
                     self.logger.info("Ждем перед следующей попыткой...")
                     time.sleep(3)
-        
+       
         if seller_details['company_name'] == 'Не найдено' and seller_details['inn'] == 'Не найдено':
             self.logger.error(f"✗ После {self.max_attempts} попыток данные продавца не найдены")
         else:
             self.logger.info(f"✓ Итоговые данные продавца: {seller_details}")
-            
+           
         return seller_details
+    
 
     def _find_info_button(self, seller_section):
         """Поиск кнопки с информацией о продавце"""

@@ -51,8 +51,8 @@ class ExcelSaver:
             ws = wb.active
             ws.title = "Продавцы"
             
-            # Заголовки
-            headers = ["Название компании", "ИНН",  "Ссылка на товар"]
+            # Добавляем новую колонку "Имя продавца"
+            headers = ["Имя продавца", "Название компании", "ИНН", "Ссылка на товар"]
             
             # Настройка заголовков
             for col, header in enumerate(headers, 1):
@@ -63,11 +63,12 @@ class ExcelSaver:
             row = 2
             seller_number = 1
             
-            for seller_name, data in sellers_data.items():
+            for seller_key, data in sellers_data.items():
                 # Пропускаем служебные данные
-                if seller_name.startswith('_'):
+                if seller_key.startswith('_'):
                     continue
                 
+                seller_name = data.get('seller_name', seller_key)  # Используем распарсенное имя
                 company_name = data.get('company_name', 'Не найдено')
                 inn = data.get('inn', 'Не найдено')
                 products = data.get('sample_products', [])
@@ -76,23 +77,25 @@ class ExcelSaver:
                     # Для каждого товара создаем отдельную строку
                     for i, product in enumerate(products):
                         # Номер только для первого товара продавца
-                        ws.cell(row=row, column=1, value=company_name if i == 0 else "")
-                        ws.cell(row=row, column=2, value=inn if i == 0 else "")
-                        ws.cell(row=row, column=3, value=product.get('url', ''))
+                        ws.cell(row=row, column=1, value=seller_name if i == 0 else "")  # Новая колонка
+                        ws.cell(row=row, column=2, value=company_name if i == 0 else "")  # Сдвинуто
+                        ws.cell(row=row, column=3, value=inn if i == 0 else "")           # Сдвинуто
+                        ws.cell(row=row, column=4, value=product.get('url', ''))          # Сдвинуто
                         
-                        # Применяем стили к ячейкам
-                        for col in range(1, 3):
+                        # Применяем стили ко всем колонкам
+                        for col in range(1, 5):
                             cell = ws.cell(row=row, column=col)
                             self._apply_cell_style(cell)
                         
                         row += 1
                 else:
-                    # Если нет товаров, все равно добавляем строку с компанией
-                    ws.cell(row=row, column=1, value=company_name)
-                    ws.cell(row=row, column=2, value=inn)
-                    ws.cell(row=row, column=3, value='')
+                    # Если нет товаров, добавляем строку с именем продавца
+                    ws.cell(row=row, column=1, value=seller_name)    # Новая колонка
+                    ws.cell(row=row, column=2, value=company_name)   # Сдвинуто
+                    ws.cell(row=row, column=3, value=inn)            # Сдвинуто
+                    ws.cell(row=row, column=4, value='')             # Сдвинуто
                     
-                    for col in range(1, 3):
+                    for col in range(1, 5):
                         cell = ws.cell(row=row, column=col)
                         self._apply_cell_style(cell)
                     
@@ -100,11 +103,12 @@ class ExcelSaver:
                 
                 seller_number += 1
             
-            # Настройка ширины колонок
+            # Обновляем ширину колонок
             column_widths = {
-                'A': 50,  # Название компании
-                'B': 20,  # ИНН
-                'C': 80   # Ссылка на товар
+                'A': 30,  # Имя продавца (новое)
+                'B': 50,  # Название компании
+                'C': 20,  # ИНН
+                'D': 80   # Ссылка на товар
             }
             
             for col, width in column_widths.items():
@@ -116,7 +120,7 @@ class ExcelSaver:
             
             # Применяем автофильтр только если есть данные
             if row > 2:
-                ws.auto_filter.ref = f"A1:E{row-1}"
+                ws.auto_filter.ref = f"A1:D{row-1}"  # Обновлено до 4 колонок
             
             # Замораживаем первую строку
             ws.freeze_panes = "A2"

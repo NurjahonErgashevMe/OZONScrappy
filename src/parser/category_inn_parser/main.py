@@ -16,7 +16,6 @@ logger = logging.getLogger('parser.category_inn_parser')
 class CategoryParser:
     def __init__(self):
         self.config = load_config("config.txt")
-        self.total_links = int(self.config.get("TOTAL_LINKS", "150"))
         self.workers_count = 3  # Количество воркеров для парсинга ИНН
         self.output_dir = "output"
         
@@ -48,19 +47,19 @@ class CategoryParser:
             if normalized_url:
                 category_url = normalized_url
             
-            # Этап 1: Сбор ссылок на товары
-            logger.info("=== ЭТАП 1: Сбор ссылок на товары ===")
-            product_links = self.link_collector.collect_product_links(category_url)
+            # Этап 1: Сбор ссылок на товары по продавцам
+            logger.info("=== ЭТАП 1: Сбор ссылок на товары по продавцам ===")
+            seller_links = self.link_collector.collect_product_links(category_url)
             
-            if not product_links:
-                logger.error("Не удалось собрать ссылки на товары")
+            if not seller_links:
+                logger.error("Не удалось собрать ссылки на товары по продавцам")
                 return {}
             
-            logger.info(f"Собрано {len(product_links)} ссылок на товары")
+            logger.info(f"Собрано ссылок от {len(seller_links)} продавцов")
             
             # Этап 2: Парсинг ИНН продавцов
             logger.info("=== ЭТАП 2: Парсинг ИНН продавцов ===")
-            sellers_data = self.seller_parser.parse_sellers_from_links(product_links, self.workers_count)
+            sellers_data = self.seller_parser.parse_sellers_from_links(seller_links, self.workers_count)
             
             if sellers_data:
                 category_name = self.url_utils.get_category_name(category_url)

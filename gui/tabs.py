@@ -189,10 +189,10 @@ class TabManager:
         # Общее количество ссылок
         ttk.Label(settings_row1, text="Количество товаров:", 
                  font=('Arial', 11)).pack(side=tk.LEFT)
-        self.total_links_var = tk.StringVar(value="150")
-        total_links_entry = ttk.Entry(settings_row1, textvariable=self.total_links_var, 
+        self.max_sellers_var = tk.StringVar(value="150")
+        max_sellers_entry = ttk.Entry(settings_row1, textvariable=self.max_sellers_var, 
                                      width=10, font=('Arial', 10))
-        total_links_entry.pack(side=tk.LEFT, padx=(10, 20))
+        max_sellers_entry.pack(side=tk.LEFT, padx=(10, 20))
         
         # Количество воркеров
         ttk.Label(settings_row1, text="Воркеры:", 
@@ -329,13 +329,13 @@ class TabManager:
         try:
             # Валидация значений
             try:
-                total_links = int(self.total_links_var.get())
+                max_sellers = int(self.max_sellers_var.get())
                 workers = int(self.workers_var.get())
                 max_idle_scrolls = int(self.max_idle_scrolls_var.get())
                 scroll_delay = float(self.scroll_delay_var.get())
                 load_timeout = int(self.load_timeout_var.get())
                 
-                if total_links <= 0 or workers <= 0 or max_idle_scrolls <= 0 or scroll_delay < 0 or load_timeout <= 0:
+                if max_sellers <= 0 or workers <= 0 or max_idle_scrolls <= 0 or scroll_delay < 0 or load_timeout <= 0:
                     raise ValueError("Значения должны быть положительными")
                     
             except ValueError as e:
@@ -352,12 +352,12 @@ class TabManager:
             
             # Обновляем или добавляем настройки парсера
             parser_settings = {
-                "TOTAL_LINKS": str(total_links),
+                "MAX_SELLERS": str(max_sellers),
                 "WORKERS_COUNT": str(workers),
                 "MAX_IDLE_SCROLLS": str(max_idle_scrolls),
                 "SCROLL_DELAY": str(scroll_delay),
                 "LOAD_TIMEOUT": str(load_timeout),
-                "HEADLESS": "False" if self.headless_var.get() else "True"
+                # "HEADLESS": "False" if self.headless_var.get() else "True"
             }
             
             # Обновляем существующие настройки или добавляем новые
@@ -413,8 +413,8 @@ class TabManager:
                         key = key.strip()
                         value = value.strip()
                         
-                        if key == "TOTAL_LINKS":
-                            self.total_links_var.set(value)
+                        if key == "MAX_SELLERS":
+                            self.max_sellers_var.set(value)
                         elif key == "WORKERS_COUNT":
                             self.workers_var.set(value)
                         elif key == "MAX_IDLE_SCROLLS":
@@ -423,8 +423,8 @@ class TabManager:
                             self.scroll_delay_var.set(value)
                         elif key == "LOAD_TIMEOUT":
                             self.load_timeout_var.set(value)
-                        elif key == "HEADLESS":
-                            self.headless_var.set(value.lower() == "false")
+                        # elif key == "HEADLESS":
+                        #     self.headless_var.set(value.lower() == "false")
             
             if hasattr(self, 'logger'):
                 self.logger.info("Настройки парсера загружены из config.txt")
@@ -435,12 +435,12 @@ class TabManager:
     
     def reset_parser_settings(self):
         """Сброс настроек парсера к значениям по умолчанию"""
-        self.total_links_var.set("150")
+        self.max_sellers_var.set("150")
         self.workers_var.set("3")
         self.max_idle_scrolls_var.set("100")
         self.scroll_delay_var.set("2.0")
         self.load_timeout_var.set("30")
-        self.headless_var.set(False)
+        # self.headless_var.set(False)
         
         self.status_var.set("Настройки парсера сброшены к значениям по умолчанию")
         if hasattr(self, 'logger'):
