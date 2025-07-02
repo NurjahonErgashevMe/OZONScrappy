@@ -216,38 +216,57 @@ class OzonProductParser:
             self.logger.error(f"Ошибка проверки новых товаров: {str(e)}")
             return False
 
-    def get_seller_name(self):
-        """Извлечение названия магазина"""
+    def _get_seller_name(self):
+        """Получение названия продавца со страницы товара"""
         try:
-            # Пытаемся найти название в различных возможных селекторах
-            selectors = [
-                'h1',
-                '[data-widget="webSellerInfo"] h1',
-                '.seller-info h1',
-                '.seller-name',
-                'title'
+            # Различные селекторы для названия продавца
+            seller_selectors = [
+                '[data-widget="webProductSeller"] a',
+                '[data-widget="webSeller"] a',
+                'a[href*="/seller/"]',
+                '[data-widget="webProductCardSeller"] a',
+                '.product-seller a',
+                '.seller-info a'
             ]
             
-            for selector in selectors:
+            for selector in seller_selectors:
                 try:
-                    element = self.driver.find_element(By.CSS_SELECTOR, selector)
-                    text = element.text.strip()
-                    if text and not text.lower().startswith('ozon'):
-                        return text
-                except:
+                    elements = self.driver.find_elements(By.CSS_SELECTOR, selector)
+                    for element in elements:
+                        text = element.text.strip()
+                        if text and text not in ['', 'Продавец', 'Seller']:
+                            logger.info(f"Найден продавец: {text}")
+                            return text
+                except NoSuchElementException:
                     continue
             
-            # Если ничего не найдено, извлекаем из URL
-            url = self.driver.current_url
-            if '/seller/' in url:
-                seller_part = url.split('/seller/')[1].split('/')[0]
-                return seller_part.replace('-', ' ').title()
+            # Поиск через XPath
+            try:
+                xpath_selectors = [
+                    "//span[contains(text(), 'Продавец')]/following-sibling::*/text()",
+                    "//span[contains(text(), 'Продавец')]/parent::*/following-sibling::*//text()",
+                    "//div[contains(@class, 'seller')]//a/text()"
+                ]
+                
+                for xpath in xpath_selectors:
+                    try:
+                        elements = self.driver.find_elements(By.XPATH, xpath)
+                        for element in elements:
+                            text = element.strip() if hasattr(element, 'strip') else str(element).strip()
+                            if text and len(text) > 2:
+                                logger.info(f"Найден продавец через XPath: {text}")
+                                return text
+                    except:
+                        continue
+            except:
+                pass
             
-            return "Неизвестный_магазин"
+            logger.warning("Название продавца не найдено")
+            return 'Не найдено'
             
         except Exception as e:
-            self.logger.error(f"Ошибка получения названия магазина: {str(e)}")
-            return "Неизвестный_магазин"
+            logger.warning(f"Ошибка при получении названия продавца: {str(e)}")
+            return 'Не найдено'
 
     def parse_products(self, seller_url):
         """Основной метод парсинга товаров"""

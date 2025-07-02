@@ -195,24 +195,24 @@ class TabManager:
         max_sellers_entry.pack(side=tk.LEFT, padx=(10, 20))
         
         # Количество воркеров
-        ttk.Label(settings_row1, text="Воркеры:", 
-                 font=('Arial', 11)).pack(side=tk.LEFT)
-        self.workers_var = tk.StringVar(value="3")
-        workers_entry = ttk.Entry(settings_row1, textvariable=self.workers_var, 
-                                 width=10, font=('Arial', 10))
-        workers_entry.pack(side=tk.LEFT, padx=(10, 0))
+        # ttk.Label(settings_row1, text="Воркеры:", 
+        #          font=('Arial', 11)).pack(side=tk.LEFT)
+        # self.workers_var = tk.StringVar(value="3")
+        # workers_entry = ttk.Entry(settings_row1, textvariable=self.workers_var, 
+        #                          width=10, font=('Arial', 10))
+        # workers_entry.pack(side=tk.LEFT, padx=(10, 0))
         
         # Вторая строка настроек
         settings_row2 = ttk.Frame(parser_settings_frame)
         settings_row2.pack(fill=tk.X, pady=(0, 15))
         
         # Максимальное количество холостых скроллов
-        ttk.Label(settings_row2, text="Макс. холостых скроллов:", 
-                 font=('Arial', 11)).pack(side=tk.LEFT)
-        self.max_idle_scrolls_var = tk.StringVar(value="100")
-        idle_scrolls_entry = ttk.Entry(settings_row2, textvariable=self.max_idle_scrolls_var, 
-                                      width=10, font=('Arial', 10))
-        idle_scrolls_entry.pack(side=tk.LEFT, padx=(10, 20))
+        # ttk.Label(settings_row2, text="Макс. холостых скроллов:", 
+        #          font=('Arial', 11)).pack(side=tk.LEFT)
+        # self.max_idle_scrolls_var = tk.StringVar(value="100")
+        # idle_scrolls_entry = ttk.Entry(settings_row2, textvariable=self.max_idle_scrolls_var, 
+        #                               width=10, font=('Arial', 10))
+        # idle_scrolls_entry.pack(side=tk.LEFT, padx=(10, 20))
         
         # Задержка скролла
         ttk.Label(settings_row2, text="Задержка скролла (сек):", 
@@ -330,13 +330,13 @@ class TabManager:
             # Валидация значений
             try:
                 max_sellers = int(self.max_sellers_var.get())
-                workers = int(self.workers_var.get())
-                max_idle_scrolls = int(self.max_idle_scrolls_var.get())
+                # workers = int(self.workers_var.get())
+                # max_idle_scrolls = int(self.max_idle_scrolls_var.get())
                 scroll_delay = float(self.scroll_delay_var.get())
                 load_timeout = int(self.load_timeout_var.get())
                 
-                if max_sellers <= 0 or workers <= 0 or max_idle_scrolls <= 0 or scroll_delay < 0 or load_timeout <= 0:
-                    raise ValueError("Значения должны быть положительными")
+                # if max_sellers <= 0 or workers <= 0 or max_idle_scrolls <= 0 or scroll_delay < 0 or load_timeout <= 0:
+                #     raise ValueError("Значения должны быть положительными")
                     
             except ValueError as e:
                 messagebox.showerror("Ошибка", f"Некорректные значения настроек: {e}")
@@ -353,8 +353,8 @@ class TabManager:
             # Обновляем или добавляем настройки парсера
             parser_settings = {
                 "MAX_SELLERS": str(max_sellers),
-                "WORKERS_COUNT": str(workers),
-                "MAX_IDLE_SCROLLS": str(max_idle_scrolls),
+                # "WORKERS_COUNT": str(workers),
+                # "MAX_IDLE_SCROLLS": str(max_idle_scrolls),
                 "SCROLL_DELAY": str(scroll_delay),
                 "LOAD_TIMEOUT": str(load_timeout),
                 # "HEADLESS": "False" if self.headless_var.get() else "True"
@@ -415,10 +415,10 @@ class TabManager:
                         
                         if key == "MAX_SELLERS":
                             self.max_sellers_var.set(value)
-                        elif key == "WORKERS_COUNT":
-                            self.workers_var.set(value)
-                        elif key == "MAX_IDLE_SCROLLS":
-                            self.max_idle_scrolls_var.set(value)
+                        # elif key == "WORKERS_COUNT":
+                        #     self.workers_var.set(value)
+                        # elif key == "MAX_IDLE_SCROLLS":
+                        #     self.max_idle_scrolls_var.set(value)
                         elif key == "SCROLL_DELAY":
                             self.scroll_delay_var.set(value)
                         elif key == "LOAD_TIMEOUT":
@@ -436,8 +436,8 @@ class TabManager:
     def reset_parser_settings(self):
         """Сброс настроек парсера к значениям по умолчанию"""
         self.max_sellers_var.set("150")
-        self.workers_var.set("3")
-        self.max_idle_scrolls_var.set("100")
+        # self.workers_var.set("3")
+        # self.max_idle_scrolls_var.set("100")
         self.scroll_delay_var.set("2.0")
         self.load_timeout_var.set("30")
         # self.headless_var.set(False)

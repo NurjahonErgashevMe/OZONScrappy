@@ -12,41 +12,129 @@ class SellerInfoParser:
         self.max_attempts = 5
         self.visited_products = set()
         
+    def scroll_to_pdp_grid(self, driver):
+        """Прокрутка до блока webPdpGrid чтобы он был на расстоянии максимум 15px от верха"""
+        try:
+            self.logger.info("Ищем блок webPdpGrid для прокрутки...")
+            
+            # Ждем появления элемента
+            pdp_grid = WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, '[data-widget="webPdpGrid"]'))
+            )
+            
+            # Получаем позицию элемента
+            element_position = pdp_grid.location['y']
+            self.logger.info(f"Позиция webPdpGrid: {element_position}px")
+            
+            # Вычисляем на сколько нужно прокрутить (оставляем 15px от верха)
+            scroll_to = max(0, element_position - 15)
+            
+            self.logger.info(f"Прокручиваем к позиции: {scroll_to}px")
+            driver.execute_script(f"window.scrollTo(0, {scroll_to});")
+            
+            # Проверяем результат
+            time.sleep(1)
+            new_position = pdp_grid.location['y']
+            viewport_top = driver.execute_script("return window.pageYOffset;")
+            distance_from_top = new_position - viewport_top
+            
+            self.logger.info(f"После прокрутки: элемент на {distance_from_top}px от верха")
+            
+            return True
+            
+        except Exception as e:
+            self.logger.error(f"Ошибка при прокрутке к webPdpGrid: {str(e)}")
+            return False
+    
+    def wait_for_seller_section(self, driver, max_wait=15):
+        """Ожидание появления секции с продавцом"""
+        try:
+            self.logger.info("Ожидаем появления секции webCurrentSeller...")
+            
+            seller_section = WebDriverWait(driver, max_wait).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, '[data-widget="webCurrentSeller"]'))
+            )
+            
+            self.logger.info("✓ Секция webCurrentSeller найдена!")
+            return seller_section
+            
+        except TimeoutException:
+            self.logger.error(f"Секция webCurrentSeller не появилась за {max_wait} секунд")
+            return None
+        except Exception as e:
+            self.logger.error(f"Ошибка при ожидании секции продавца: {str(e)}")
+            return None
+    
+    def get_seller_link(self, seller_section):
+        """Извлечение ссылки на продавца"""
+        try:
+            self.logger.info("Ищем ссылку на продавца...")
+            
+            # Различные селекторы для ссылки на продавца
+            link_selectors = [
+                'a[href*="/seller/"]',
+                'a[title] + div a[href*="/seller/"]',
+                'div a[href*="/seller/"]'
+            ]
+            
+            for selector in link_selectors:
+                try:
+                    link_element = seller_section.find_element(By.CSS_SELECTOR, selector)
+                    href = link_element.get_attribute('href')
+                    
+                    if href and '/seller/' in href:
+                        self.logger.info(f"✓ Найдена ссылка на продавца: {href}")
+                        return href
+                        
+                except NoSuchElementException:
+                    continue
+                    
+            self.logger.warning("Ссылка на продавца не найдена")
+            return None
+            
+        except Exception as e:
+            self.logger.error(f"Ошибка при получении ссылки на продавца: {str(e)}")
+            return None
         
     def get_seller_name(self, driver):
         """Получение названия продавца со страницы магазина"""
         try:
-            # Различные селекторы для названия продавца
+            # Уточненные селекторы для названия продавца
             name_selectors = [
+                'div[data-widget="webCurrentSeller"] a[href*="/seller/"]',  # Ссылка на магазин
+                'div[data-widget="webCurrentSeller"] .j7n_27',  # Название в блоке продавца
                 'h1[data-widget="webShopTitle"]',
                 '.shop-header h1',
                 '[data-widget="webShopTitle"] h1',
                 '.seller-name',
                 'h1'
             ]
-           
+        
             for selector in name_selectors:
                 try:
                     element = driver.find_element(By.CSS_SELECTOR, selector)
-                    if element and element.text.strip():
-                        return element.text.strip()
+                    text = element.text.strip()
+                    if text:
+                        # Удаляем лишние символы если нужно
+                        clean_text = text.replace('«', '').replace('»', '').strip()
+                        return clean_text if clean_text else text
                 except NoSuchElementException:
                     continue
-           
-            # Попытка получить из заголовка страницы
-            title = driver.title
-            if title and '|' in title:
-                return title.split('|')[0].strip()
-           
+                
             return 'Не найдено'
-           
+        
         except Exception as e:
             self.logger.warning(f"Ошибка при получении названия продавца: {str(e)}")
             return 'Не найдено'
 
     def get_seller_details(self, driver, seller_url=None):
-        """Получение детальной информации о продавце с повторными попытками"""
-        seller_details = {'company_name': 'Не найдено', 'inn': 'Не найдено'}
+        """Получение детальной информации о продавце с улучшенной логикой"""
+        seller_details = {
+            'seller_name' : 'Не найдено',
+            'company_name': 'Не найдено', 
+            'inn': 'Не найдено',
+            'seller_link': 'Не найдено',
+        }
        
         for attempt in range(self.max_attempts):
             self.logger.info(f"=== ПОПЫТКА {attempt + 1} из {self.max_attempts} получить данные продавца ===")
@@ -59,19 +147,34 @@ class SellerInfoParser:
                     time.sleep(3)  # Ждем загрузки страницы
                     self.logger.info("Страница обновлена, ждем загрузки контента...")
                
-                # Активируем контент скроллом
-                self.logger.info("Прокручиваем страницу для активации контента...")
-                driver.execute_script("window.scrollTo(0, 600);")
-                time.sleep(1)
-               
-                # Ищем секцию с продавцом
-                self.logger.info("Ищем секцию с информацией о продавце...")
-                seller_section = WebDriverWait(driver, 15).until(
-                    EC.presence_of_element_located((By.CSS_SELECTOR, 'div[data-widget="webCurrentSeller"]'))
-                )
+                # Сначала прокручиваем к webPdpGrid
+                if not self.scroll_to_pdp_grid(driver):
+                    self.logger.warning("Не удалось прокрутить к webPdpGrid")
+                    
+                time.sleep(2)  # Даем время на загрузку контента
+                
+                # Ждем появления секции с продавцом
+                seller_section = self.wait_for_seller_section(driver)                
+                
+                if not seller_section:
+                    self.logger.warning("Секция продавца не найдена")
+                    if attempt < self.max_attempts - 1:
+                        continue
+                    else:
+                        break
+                        
                 self.logger.info("✓ Секция продавца найдена!")
+                
+                # Получаем ссылку на продавца
+                seller_link = self.get_seller_link(seller_section)
+                seller_name = self.get_seller_name(driver)
+                if seller_link:
+                    seller_details['seller_link'] = seller_link
+                
+                if seller_name:
+                    seller_details['seller_name'] = seller_name
                
-                # Дополнительный скролл к секции
+                # Дополнительный скролл к секции продавца
                 self.logger.info("Прокручиваем к секции продавца...")
                 driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", seller_section)
                 time.sleep(1.5)

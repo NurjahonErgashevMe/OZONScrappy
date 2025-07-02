@@ -52,7 +52,7 @@ class ExcelSaver:
             ws.title = "Продавцы"
             
             # Добавляем новую колонку "Имя продавца"
-            headers = ["Имя продавца", "Название компании", "ИНН", "Ссылка на товар"]
+            headers = ["Имя продавца", "Название компании", "ИНН", "Ссылка на продаца"]
             
             # Настройка заголовков
             for col, header in enumerate(headers, 1):
@@ -80,7 +80,7 @@ class ExcelSaver:
                         ws.cell(row=row, column=1, value=seller_name if i == 0 else "")  # Новая колонка
                         ws.cell(row=row, column=2, value=company_name if i == 0 else "")  # Сдвинуто
                         ws.cell(row=row, column=3, value=inn if i == 0 else "")           # Сдвинуто
-                        ws.cell(row=row, column=4, value=product.get('url', ''))          # Сдвинуто
+                        ws.cell(row=row, column=4, value=product.get('seller_link', ''))          # Сдвинуто
                         
                         # Применяем стили ко всем колонкам
                         for col in range(1, 5):
